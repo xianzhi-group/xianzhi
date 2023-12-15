@@ -6,17 +6,23 @@
     <parent>
         <groupId>io.xianzhi</groupId>
         <artifactId>xianzhi</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <groupId>io.xianzhi.boot</groupId>
-    <artifactId>xianzhi-web-srpring-boot-starter</artifactId>
+    <artifactId>xianzhi-web-spring-boot-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.xianzhi.core</groupId>
+            <artifactId>xianzhi-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
