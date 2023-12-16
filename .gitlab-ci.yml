@@ -1,0 +1,37 @@
+stages:
+  - build
+  - test
+  - deploy
+# 编译阶段
+编译:
+  stage: build
+  script:
+    - echo "开始编译应用程序"
+    - mvn clean package # 你的编译命令，可以根据项目的需要修改
+
+
+# 单元测试阶段
+单元测试:
+  stage: test
+  script:
+    - echo "运行单元测试"
+    - mvn test # 运行单元测试
+
+# 集成测试阶段
+集成测试:
+  stage: test
+  script:
+    - echo "运行集成测试"
+    - mvn verify # 运行集成测试，可以根据项目的需要修改
+
+
+# 发布到 Maven 私服
+发布到 Maven :
+  stage: deploy
+  script:
+    - echo "发布到 Maven 私服"
+    - mvn deploy -P xianzhi # 使用 Maven 发布到私服
+  only:
+    - main # 只有在 master 分支上触发
+
+
