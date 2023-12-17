@@ -19,9 +19,15 @@ package io.xianzhi.boot.web.handler;
 import io.xianzhi.core.code.CommonCode;
 import io.xianzhi.core.exception.BizException;
 import io.xianzhi.core.result.ResponseResult;
+import io.xianzhi.core.result.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.Objects;
 
 /**
  * 全局异常处理<br>
@@ -55,5 +61,68 @@ public class GlobalExceptionHandler {
     public ResponseResult<Object> exception(Exception exception) {
         log.error(exception.getMessage(), exception);
         return ResponseResult.fail(CommonCode.ERROR);
+    }
+
+    /**
+     * 处理空指针异常
+     *
+     * @param exception ex
+     * @return 响应信息
+     */
+    @ExceptionHandler(value = NullPointerException.class)
+    public ResponseResult<Object> nullPointerException(NullPointerException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseResult.fail(CommonCode.NULL_POINTER_EXCEPTION);
+    }
+
+    /**
+     * Content-Type 错误处理
+     *
+     * @param exception ex
+     * @return 响应信息
+     */
+    @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
+    public ResponseResult<Object> HttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseResult.fail(CommonCode.HTTP_MEDIA_TYPE_NOT_SUPPORTED_EXCEPTION);
+    }
+
+    /**
+     * '@RequestParam' 指定的参数没有获取到
+     *
+     * @param exception ex
+     * @return 响应信息
+     */
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public ResponseResult<Object> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseResult.fail(CommonCode.MISSING_SERVLET_REQUEST_PARAMETER_EXCEPTION);
+    }
+
+    /**
+     * 请求参数校验错误
+     *
+     * @param exception ex
+     * @return 响应信息
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseResult<Object> methodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        String msg = Objects.requireNonNull(exception.getBindingResult().getFieldError()).getDefaultMessage();
+        return ResponseResult.fail(new Result() {
+            @Override
+            public String code() {
+                return CommonCode.HTTP_REQUEST_METHOD_NOT_SUPPORTED_EXCEPTION.code();
+            }
+
+            @Override
+            public boolean success() {
+                return false;
+            }
+
+            @Override
+            public String message() {
+                return msg;
+            }
+        });
     }
 }

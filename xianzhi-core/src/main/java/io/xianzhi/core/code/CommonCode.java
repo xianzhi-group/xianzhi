@@ -41,7 +41,6 @@ public enum CommonCode implements Result {
      * 系统错误
      */
     ERROR("-1", false, "error"),
-
     /**
      * 未登录
      */
@@ -51,29 +50,43 @@ public enum CommonCode implements Result {
      */
     FORBIDDEN("403", false, "forbidden"),
     /**
-     * 请求方式错误
+     * 空指针异常
      */
-    METHOD_NOT_SUPPORT("405", false, "method.not.support"),
+    NULL_POINTER_EXCEPTION("XZ-00-00000", false, "error"),
     /**
-     * 请求参数错误
+     *  Content-Type 错误处理
      */
-    REQUEST_PARAMS_ERROR("400", false, "request.params.error"),
+    HTTP_MEDIA_TYPE_NOT_SUPPORTED_EXCEPTION("XZ-00-00001", false, "error"),
+    /**
+     *  '@RequestParam' 指定的参数没有获取到
+     */
+    MISSING_SERVLET_REQUEST_PARAMETER_EXCEPTION("XZ-00-00002", false, "error"),
+    /**
+     * 请求参数校验错误
+     */
+    HTTP_REQUEST_METHOD_NOT_SUPPORTED_EXCEPTION("XZ-00-00003", false, "error"),
+
+
     /**
      * 验证错误
      */
     CAPTCHA_ERROR("XZ-00-00000", false, "captcha.error"),
+
     /**
      * 手机号码格式错误
      */
     PHONE_FORMAT_ERROR("XZ-00-00001", false, "phone.format.error"),
+
     /**
      * 邮箱格式错误
      */
     EMAIL_FORMAT_ERROR("XZ-00-00002", false, "email.format.error"),
+
     /**
      * 对象类型错误
      */
     OBJECT_TYPE_ERROR("XZ-00-00003", false, "object.type.error"),
+
     /**
      * 参数检查失败
      */
