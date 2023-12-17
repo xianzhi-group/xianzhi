@@ -16,6 +16,7 @@
 
 package io.xianzhi.boot.redis;
 
+import io.xianzhi.core.utils.DataUtil;
 import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
@@ -95,12 +96,12 @@ public class RedisHandler {
      * @return 缓存
      */
     public <T> T valueGet(String key, Class<T> tClass) {
-        return BeanUtil.read(valueGet(key), tClass);
+        return DataUtil.read(valueGet(key), tClass);
     }
 
 
     public <T> List<T> valueGetList(String key, Class<T> tClass) {
-        return BeanUtil.readList(valueGet(key), tClass);
+        return DataUtil.readList(valueGet(key), tClass);
     }
 
     /**
