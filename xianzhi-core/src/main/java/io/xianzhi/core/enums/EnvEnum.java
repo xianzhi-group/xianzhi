@@ -14,29 +14,53 @@
  * limitations under the License.
  */
 
-package io.xianzhi.core.constants;
+package io.xianzhi.core.enums;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
- * 系统常量<br>
+ * 环境枚举<br>
  *
  * @author Max
  * @since 1.0.0
  */
-public class SystemConstant {
-
-
-    /**
-     * traceId
-     */
-    public static final String TRACE_ID = "TRACE_ID";
+@Getter
+@AllArgsConstructor
+public enum EnvEnum {
 
     /**
-     * 主键ID
+     * 线下/开发环境
      */
-    public static final String ID = "id";
+    DEV("dev", "线下/开发环境"),
+    /**
+     * 测试环境
+     */
+    TEST("test", "测试环境"),
+    /**
+     * 交付环境
+     */
+    UAT("uat", "交付环境"),
+    /**
+     * 预发环境
+     */
+    PRE("pre", "预发环境"),
+    /**
+     * 灰度环境
+     */
+    GRAY("gray", "灰度环境"),
+    /**
+     * 生产环境
+     */
+    PROD("prod", "生产环境"),
+    ;
 
     /**
-     * 环境
+     * code
      */
-    public static final String ENV = "env";
+    private final String code;
+    /**
+     * 描述
+     */
+    private final String desc;
 }
