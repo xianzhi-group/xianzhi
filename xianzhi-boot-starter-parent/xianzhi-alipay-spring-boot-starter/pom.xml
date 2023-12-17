@@ -20,25 +20,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.xianzhi</groupId>
-        <artifactId>xianzhi</artifactId>
+        <groupId>io.xianzhi.boot</groupId>
+        <artifactId>xianzhi-boot-starter-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>io.xianzhi.boot</groupId>
-    <artifactId>xianzhi-boot-starter-parent</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>xianzhi-dingtalk-spring-boot-starter</module>
-        <module>xianzhi-aliyun-sms-spring-boot-starter</module>
-        <module>xianzhi-aliyun-oss-spring-boot-starter</module>
-        <module>xianzhi-alipay-spring-boot-starter</module>
-    </modules>
+    <artifactId>xianzhi-alipay-spring-boot-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.xianzhi.core</groupId>
+            <artifactId>xianzhi-core</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

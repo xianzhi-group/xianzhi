@@ -32,6 +32,7 @@
         <module>xianzhi-boot-starter-parent/xianzhi-log4j2-spring-boot-starter</module>
         <module>xianzhi-boot-starter-parent/xianzhi-web-spring-boot-starter</module>
         <module>xianzhi-boot-starter-parent/xianzhi-redis-spring-boot-starter</module>
+        <module>xianzhi-boot-starter-parent/xianzhi-email-spring-boot-starter</module>
     </modules>
 
     <properties>
