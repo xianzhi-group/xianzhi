@@ -29,6 +29,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>io.xianzhi</groupId>
+                <artifactId>xianzhi-business</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.xianzhi.cms</groupId>
                 <artifactId>xianzhi-cms-dao</artifactId>
                 <version>${project.version}</version>

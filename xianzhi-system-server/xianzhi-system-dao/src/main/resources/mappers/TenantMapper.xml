@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="io.xianzhi.system.dao.mappers.TenantMapper">
+<!--    根据ID查询租户信息-->
+    <select id="queryById" resultType="io.xianzhi.system.dao.dataobj.TenantDO">
+        select *
+        from xz_tenant
+        where id = #{id,jdbcType=VARCHAR}
+          and is_deleted = 0
+    </select>
+<!--    判断租户名称是否存在-->
+    <select id="existsTenantByTenantNameAndTenantTypeAndIdNot" resultType="boolean">
+        select ifnull((select 1
+                       from xz_tenant where tenant_name = #{tenantName,jdbcType=VARCHAR}
+                                        and tenant_type = #{tenantType,jdbcType=VARCHAR}
+                                        and is_deleted = 0
+        <if test="id != null and id != ''">
+            and id != #{id,jdbcType=VARCHAR}
+        </if>
+        ), 0)
+    </select>
+
+    <select id="existsTenantByTenantCode" resultType="boolean">
+        select ifnull((select 1 from xz_tenant where tenant_code = #{tenantCode,jdbcType=VARCHAR} and is_deleted = 0),0)
+    </select>
 </mapper>

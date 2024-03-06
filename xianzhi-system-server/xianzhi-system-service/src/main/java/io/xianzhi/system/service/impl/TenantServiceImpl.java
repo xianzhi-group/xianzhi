@@ -1,11 +1,17 @@
 package io.xianzhi.system.service.impl;
 
+import io.xianzhi.common.exception.BizException;
+import io.xianzhi.system.code.SystemErrorCode;
+import io.xianzhi.system.dao.dataobj.TenantDO;
+import io.xianzhi.system.dao.mappers.TenantMapper;
+import io.xianzhi.system.manager.TenantManager;
 import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.vo.TenantVO;
 import io.xianzhi.system.service.TenantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * 租户接口实现<br>
@@ -18,6 +24,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TenantServiceImpl implements TenantService {
     /**
+     * 租户信息持久层
+     */
+    private final TenantMapper tenantMapper;
+    /**
+     * 租户管理
+     */
+    private final TenantManager tenantManager;
+
+    /**
      * 创建租户<br>
      *
      * @param tenantDTO 租户信息入参
@@ -25,6 +40,8 @@ public class TenantServiceImpl implements TenantService {
      */
     @Override
     public String createTenant(TenantDTO tenantDTO) {
+        TenantDO tenantDO = checkTenantDto(tenantDTO);
+        tenantMapper.insert(tenantDO);
         return null;
     }
 
@@ -57,5 +74,33 @@ public class TenantServiceImpl implements TenantService {
     @Override
     public TenantVO details(String id) {
         return null;
+    }
+
+    /**
+     * 检查租户信息<br>
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 租户信息实体
+     */
+    private TenantDO checkTenantDto(TenantDTO tenantDTO) {
+        TenantDO tenantDO;
+        // 判断租户名称是否存在
+        if (tenantMapper.existsTenantByTenantNameAndTenantTypeAndIdNot(tenantDTO.getTenantName(), tenantDTO.getTenantType(), tenantDTO.getId())) {
+            throw new BizException(SystemErrorCode.TENANT_NAME_EXISTS);
+        }
+        if (StringUtils.hasText(tenantDTO.getId())) {
+            tenantDO = tenantManager.getTenantById(tenantDTO.getId());
+            if (tenantDO == null) {
+                throw new BizException(SystemErrorCode.TENANT_NOT_EXISTS);
+            }
+
+        } else {
+            tenantDO = new TenantDO();
+            // 判断租户Code是否存在
+            if (tenantMapper.existsTenantByTenantCode(tenantDTO.getTenantCode())) {
+                throw new BizException(SystemErrorCode.TENANT_CODE_EXISTS);
+            }
+        }
+        return tenantDO;
     }
 }
