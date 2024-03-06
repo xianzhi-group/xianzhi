@@ -16,8 +16,10 @@
 
 package io.xianzhi.system.web.controller;
 
+import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.TenantDTO;
+import io.xianzhi.system.model.page.TenantPage;
 import io.xianzhi.system.model.vo.TenantVO;
 import io.xianzhi.system.service.TenantService;
 import lombok.RequiredArgsConstructor;
@@ -104,6 +106,17 @@ public class TenantController {
      */
     @PostMapping(value = "/disable/{id}")
     public ResponseResult<Object> disable(@PathVariable(value = "id") String id) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 查询租户列表
+     *
+     * @param tenantPage 租户查询条件
+     * @return 租户列表
+     */
+    @PostMapping(value = "/list")
+    public ResponseResult<ListResult<TenantVO>> list(@RequestBody TenantPage tenantPage) {
         return ResponseResult.ok();
     }
 

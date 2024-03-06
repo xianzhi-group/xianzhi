@@ -16,7 +16,11 @@
 
 package io.xianzhi.system.web.controller;
 
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.dto.RoleDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,4 +34,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/role")
 public class RoleController {
+
+    /**
+     * 新增角色
+     *
+     * @param roleDTO 角色信息入参
+     * @return 角色id
+     */
+    public ResponseResult<String> createRole(RoleDTO roleDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 更新角色
+     *
+     * @param roleDTO 角色信息入参
+     * @return 响应信息
+     */
+    public ResponseResult<Object> updateRole(RoleDTO roleDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 删除角色
+     *
+     * @param id 角色id
+     * @return 响应信息
+     */
+    @PostMapping(value = "/deleted/{id}")
+    public ResponseResult<Object> deleteRole(@PathVariable(value = "id") String id) {
+        return ResponseResult.ok();
+    }
+
 }

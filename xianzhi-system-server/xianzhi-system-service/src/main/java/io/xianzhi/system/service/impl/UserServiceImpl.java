@@ -45,4 +45,14 @@ public class UserServiceImpl implements UserService {
 
         return null;
     }
+
+    /**
+     * 更新用户
+     *
+     * @param userDTO 用户信息入参
+     */
+    @Override
+    public void updateUser(UserDTO userDTO) {
+
+    }
 }

@@ -16,15 +16,15 @@
 
 package io.xianzhi.system.web.controller;
 
+import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.UserDTO;
+import io.xianzhi.system.model.page.UserPage;
+import io.xianzhi.system.model.vo.UserVO;
 import io.xianzhi.system.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户接口<br>
@@ -51,6 +51,39 @@ public class UserController {
     @PostMapping(value = "/createUser")
     public ResponseResult<String> createUser(@RequestBody @Validated UserDTO userDTO) {
         return ResponseResult.ok(userService.createUser(userDTO));
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param userDTO 用户信息入参
+     * @return 响应信息
+     */
+    @PostMapping(value = "/updateUser")
+    public ResponseResult<Object> updateUser(@RequestBody @Validated UserDTO userDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 查询用户详情
+     *
+     * @param id 用户ID
+     * @return 用户详情
+     */
+    @GetMapping(value = "/details/{id}")
+    public ResponseResult<UserVO> details(@PathVariable(value = "id") String id) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 查询用户列表
+     *
+     * @param userPage 用户查询条件
+     * @return 用户列表
+     */
+    @PostMapping(value = "/list")
+    public ResponseResult<ListResult<UserVO>> list(UserPage userPage) {
+        return ResponseResult.ok();
     }
 
 

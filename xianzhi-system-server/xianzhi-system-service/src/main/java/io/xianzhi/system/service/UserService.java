@@ -32,4 +32,11 @@ public interface UserService {
      * @return 用户ID
      */
     String createUser(UserDTO userDTO);
+
+    /**
+     * 更新用户
+     *
+     * @param userDTO 用户信息入参
+     */
+    void updateUser(UserDTO userDTO);
 }
