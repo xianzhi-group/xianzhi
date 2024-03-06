@@ -1,18 +1,18 @@
-package io.xianzhi.authorization;
+package io.xianzhi.cms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * 授权服务启动类<br>
+ * CMS服务启动类<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @SpringBootApplication
-public class AuthorizationApplication {
+public class CmsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AuthorizationApplication.class, args);
+        SpringApplication.run(CmsApplication.class, args);
     }
 }
