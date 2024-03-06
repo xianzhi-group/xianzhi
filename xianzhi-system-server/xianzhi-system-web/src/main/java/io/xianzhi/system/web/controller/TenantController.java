@@ -3,6 +3,7 @@ package io.xianzhi.system.web.controller;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.vo.TenantVO;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,6 +24,7 @@ public class TenantController {
      * @param tenantDTO 租户信息入参
      * @return 租户ID
      */
+    @PostMapping(value = "/createTenant")
     public ResponseResult<String> createTenant(TenantDTO tenantDTO) {
         return ResponseResult.ok();
     }
@@ -33,6 +35,7 @@ public class TenantController {
      * @param tenantDTO 租户信息入参
      * @return 响应信息
      */
+    @PostMapping(value = "/updateTenant")
     public ResponseResult<Object> updateTenant(TenantDTO tenantDTO) {
         return ResponseResult.ok();
     }
