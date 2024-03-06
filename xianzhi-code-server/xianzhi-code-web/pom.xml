@@ -20,12 +20,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.xianzhi.cms</groupId>
-        <artifactId>xianzhi-cms-server</artifactId>
+        <groupId>io.xianzhi.code</groupId>
+        <artifactId>xianzhi-code-server</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>xianzhi-cms-service</artifactId>
+    <artifactId>xianzhi-code-web</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -34,28 +34,12 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.xianzhi.cms</groupId>
-            <artifactId>xianzhi-cms-facade</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.xianzhi.cms</groupId>
-            <artifactId>xianzhi-cms-dao</artifactId>
+            <groupId>io.xianzhi.code</groupId>
+            <artifactId>xianzhi-code-service</artifactId>
         </dependency>
         <dependency>
             <groupId>io.xianzhi.boot</groupId>
-            <artifactId>xianzhi-dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.xianzhi.boot</groupId>
-            <artifactId>xianzhi-redis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.xianzhi</groupId>
-            <artifactId>xianzhi-business</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.xianzhi.boot</groupId>
-            <artifactId>xianzhi-oauth2-resource-server-spring-boot-starter</artifactId>
+            <artifactId>xianzhi-web-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
