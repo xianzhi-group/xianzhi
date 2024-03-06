@@ -2,3 +2,4 @@
 *.iml
 */target/
 */*/target/
+*/node_modules
