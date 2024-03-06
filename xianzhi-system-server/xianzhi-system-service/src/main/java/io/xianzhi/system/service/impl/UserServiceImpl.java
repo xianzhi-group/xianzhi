@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public String createUser(UserDTO userDTO) {
-        XianZhiUserContext
+        String currentUserType = XianZhiUserContext.getCurrentUserType();
+
         return null;
     }
 }
