@@ -1,5 +1,7 @@
 package io.xianzhi.system.service.impl;
 
+import io.xianzhi.business.context.XianZhiUserContext;
+import io.xianzhi.system.model.dto.UserDTO;
 import io.xianzhi.system.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,4 +17,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    /**
+     * 新增用户
+     *
+     * @param userDTO 用户信息入参
+     * @return 用户ID
+     */
+    @Override
+    public String createUser(UserDTO userDTO) {
+        XianZhiUserContext
+        return null;
+    }
 }
