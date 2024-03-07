@@ -18,12 +18,18 @@ package io.xianzhi.authorization.bootstrap.config;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
+import io.xianzhi.authorization.properties.OAuth2Properties;
+import io.xianzhi.authorization.providers.PasswordAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,9 +49,10 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.security.interfaces.RSAKey;
+import java.security.cert.CertificateException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.UUID;
 
 /**
  * 授权服务器配置<br>
@@ -134,7 +141,6 @@ public class AuthorizationServerConfig {
         OAuth2TokenGenerator tokenGenerator = http.getSharedObject(OAuth2TokenGenerator.class);
         PasswordAuthenticationProvider passwordAuthenticationProvider = new PasswordAuthenticationProvider(
                 authorizationService, tokenGenerator, authenticationManager);
-
 
         // 处理 UsernamePasswordAuthenticationToken
         http.authenticationProvider(new XianZhiDaoAuthenticationProvider());
