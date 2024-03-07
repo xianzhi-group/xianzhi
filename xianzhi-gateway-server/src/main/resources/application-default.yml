@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 192.168.50.11:8848
+      config:
+        server-addr: ${spring.cloud.nacos.server-addr}
+      username: nacos
+      password: nacos
+    gateway:
+      globalcors:
+        cors-configurations:
+          # 仅在开发环境设置为*
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      routes:
+        #        授权服务
+        - id: xianzhi-authorization
+          uri: lb://xianzhi-authorization
+          predicates:
+            # 路径匹配,
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        #        系统服务
+        - id: xianzhi-system
+          uri: lb://xianzhi-system
+          predicates:
+            # 路径匹配,
+            - Path=/system/**
+          filters:
+            - StripPrefix=1
+        #        代码服务
+        - id: xianzhi-code
+          uri: lb://xianzhi-code
+          predicates:
+            # 路径匹配,
+            - Path=/code/**
+          filters:
+            - StripPrefix=1
+        #        代码服务
+        - id: xianzhi-cms
+          uri: lb://xianzhi-cms
+          predicates:
+            # 路径匹配,
+            - Path=/cms/**
+          filters:
+            - StripPrefix=1
