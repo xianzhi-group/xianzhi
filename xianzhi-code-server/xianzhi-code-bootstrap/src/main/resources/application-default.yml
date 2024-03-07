@@ -43,7 +43,7 @@ mybatis-plus:
   #配置Mapper映射文件
   mapper-locations: classpath:/mappers/*.xml
   # 配置Mybatis数据返回类型别名（默认别名为类名）
-  type-aliases-package: io.xianzhi.authorization.mapper
+  type-aliases-package: io.xianzhi.code.dao.mapper
   configuration:
     # 自动驼峰命名
     map-underscore-to-camel-case: true
@@ -70,14 +70,8 @@ dubbo:
       namespace: "dubbo"
     group: "dubbo"
   scan:
-    base-packages: io.xianzhi.authorization.facade.impl
+    base-packages: io.xianzhi.code.facade.impl
   provider:
     timeout: 3000
   consumer:
     check: false
-xianzhi:
-  security:
-    oauth2:
-      key-pair-path: classpath:xianzhi.jks
-      key-pair-password: xianzhi_2024
-      key-pair-alias: xianzhi

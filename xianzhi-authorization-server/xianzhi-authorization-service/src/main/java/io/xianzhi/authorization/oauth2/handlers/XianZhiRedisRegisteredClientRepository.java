@@ -18,13 +18,17 @@ package io.xianzhi.authorization.oauth2.handlers;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import io.xianzhi.authorization.constants.OAuth2Constant;
 import io.xianzhi.authorization.dao.dataobj.OAuth2ClientDO;
 import io.xianzhi.authorization.dao.mapper.OAuth2ClientMapper;
 import io.xianzhi.authorization.enums.GrantTypeEnum;
+import io.xianzhi.authorization.oauth2.XianZhiOAuth2UserDetails;
 import io.xianzhi.authorization.properties.OAuth2Properties;
-import io.xianzhi.boot.oauth2.resource.OAuth2UserDetails;
 import io.xianzhi.boot.oauth2.resource.code.OAuth2Code;
 import io.xianzhi.boot.redis.RedisHandler;
+import io.xianzhi.boot.security.constants.SecurityConstant;
+import io.xianzhi.boot.security.properties.SecurityProperties;
 import io.xianzhi.common.context.UserContext;
 import io.xianzhi.common.exception.BizException;
 import lombok.RequiredArgsConstructor;
@@ -41,10 +45,13 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Redis客户端信息<br>
@@ -105,14 +112,14 @@ public class XianZhiRedisRegisteredClientRepository implements RegisteredClientR
     @Override
     public RegisteredClient findById(String id) {
         if (StringUtils.hasText(id)) {
-            OAuth2ClientDO clientDO = redisHandler.valueGet(AuthorizationServerCacheConstant.OAUTH_CLIENT_BY_ID + id, OAuth2ClientDO.class);
+            OAuth2ClientDO clientDO = redisHandler.valueGet(OAuth2Constant.CACHE_OAUTH_CLIENT_ID + id, OAuth2ClientDO.class);
             if (null == clientDO) {
                 clientDO = oAuth2ClientMapper.queryById(id);
                 if (null == clientDO) {
                     log.error("客户端信息不存在，客户端主键ID:{}", id);
                     throw new BizException(OAuth2Code.CLIENT_ERROR);
                 }
-                redisHandler.valueSet(AuthorizationServerCacheConstant.OAUTH_CLIENT_BY_ID + id, clientDO);
+                redisHandler.valueSet(OAuth2Constant.CACHE_OAUTH_CLIENT_ID + id, clientDO);
             }
             return clientDOToRegisterClient(clientDO);
         }
@@ -129,14 +136,14 @@ public class XianZhiRedisRegisteredClientRepository implements RegisteredClientR
     @Override
     public RegisteredClient findByClientId(String clientId) {
         if (StringUtils.hasText(clientId)) {
-            OAuth2ClientDO clientDO = redisHandler.valueGet(AuthorizationServerCacheConstant.OAUTH_CLIENT_BY_CLIENT_ID + clientId, OAuth2ClientDO.class);
+            OAuth2ClientDO clientDO = redisHandler.valueGet(OAuth2Constant.CACHE_OAUTH_CLIENT_CLIENT_ID + clientId, OAuth2ClientDO.class);
             if (null == clientDO) {
                 clientDO = oAuth2ClientMapper.queryByClientId(clientId);
                 if (null == clientDO) {
                     log.error("客户端信息不存在，客户端ID:{}", clientId);
                     throw new BizException(OAuth2Code.CLIENT_ERROR);
                 }
-                redisHandler.valueSet(AuthorizationServerCacheConstant.OAUTH_CLIENT_BY_CLIENT_ID + clientId, clientDO);
+                redisHandler.valueSet(OAuth2Constant.CACHE_OAUTH_CLIENT_CLIENT_ID + clientId, clientDO);
             }
             return clientDOToRegisterClient(clientDO);
         }
@@ -170,7 +177,7 @@ public class XianZhiRedisRegisteredClientRepository implements RegisteredClientR
     private RegisteredClient clientDOToRegisterClient(OAuth2ClientDO entity) {
         RegisteredClient.Builder builder = RegisteredClient.withId(entity.getId())
                 .clientId(entity.getClientId())
-                .clientSecret(SecurityConstants.NOOP + entity.getClientSecret())
+                .clientSecret(SecurityConstant.NOOP + entity.getClientSecret())
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
         String authorizationGrantTypes = entity.getAuthorizationGrantTypes();
         List<AuthorizationGrantType> authorizationGrantTypeList = JSON.parseArray(authorizationGrantTypes, AuthorizationGrantType.class);
@@ -247,7 +254,7 @@ public class XianZhiRedisRegisteredClientRepository implements RegisteredClientR
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        OAuth2UserDetails userBO = new OAuth2UserDetails();
+        XianZhiOAuth2UserDetails userBO = new XianZhiOAuth2UserDetails();
         userBO.setId("00001");
         UserContext.set(userBO);
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -262,10 +269,8 @@ public class XianZhiRedisRegisteredClientRepository implements RegisteredClientR
                         .build())
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(new AuthorizationGrantType(GrantTypeEnum.PASSWORD.getCode()))
-                .authorizationGrantType(new AuthorizationGrantType(GrantTypeEnum.CODE.getCode()))
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri(securityProperties.getAuthPage())
                 .scope("server")
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).build())
                 .build();

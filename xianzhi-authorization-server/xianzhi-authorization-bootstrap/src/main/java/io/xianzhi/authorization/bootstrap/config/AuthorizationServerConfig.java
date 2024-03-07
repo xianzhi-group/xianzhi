@@ -22,6 +22,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import io.xianzhi.authorization.oauth2.XianZhiDaoAuthenticationProvider;
 import io.xianzhi.authorization.properties.OAuth2Properties;
 import io.xianzhi.authorization.providers.PasswordAuthenticationProvider;
 import lombok.RequiredArgsConstructor;

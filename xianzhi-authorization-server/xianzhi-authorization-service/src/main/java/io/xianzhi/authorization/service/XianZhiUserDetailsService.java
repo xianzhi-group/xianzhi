@@ -14,30 +14,23 @@
  * limitations under the License.
  */
 
-package io.xianzhi.business.context;
+package io.xianzhi.authorization.service;
 
-import io.xianzhi.business.enums.UserTypeEnum;
-import io.xianzhi.common.context.UserBO;
-import lombok.Data;
+import org.springframework.core.Ordered;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * 用户信息<br>
+ * <br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-public class XianZhiUserBO implements UserBO {
-
-
-    private String id;
-
-
-    private String username;
-
+public interface XianZhiUserDetailsService extends UserDetailsService, Ordered {
     /**
-     * 租户类型 {@link UserTypeEnum#getCode()}
+     * 判断是否支持
+     *
+     * @param grantType 授权类型
+     * @return 是否支持
      */
-    private String userType;
-
+    boolean support(String grantType);
 }

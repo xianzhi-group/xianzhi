@@ -1,8 +1,8 @@
 server:
-  port: 8003
+  port: 8002
 spring:
   application:
-    name: xianzhi-authorization
+    name: xianzhi-system
   data:
     redis:
       # 地址
