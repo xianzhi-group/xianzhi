@@ -19,10 +19,8 @@ package io.xianzhi.system.web.controller;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.RoleDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 角色接口<br>
@@ -41,7 +39,8 @@ public class RoleController {
      * @param roleDTO 角色信息入参
      * @return 角色id
      */
-    public ResponseResult<String> createRole(RoleDTO roleDTO) {
+    @PostMapping(value = "/createRole")
+    public ResponseResult<String> createRole(@RequestBody @Validated RoleDTO roleDTO) {
         return ResponseResult.ok();
     }
 
@@ -51,7 +50,8 @@ public class RoleController {
      * @param roleDTO 角色信息入参
      * @return 响应信息
      */
-    public ResponseResult<Object> updateRole(RoleDTO roleDTO) {
+    @PostMapping(value = "/updateRole")
+    public ResponseResult<Object> updateRole(@RequestBody @Validated RoleDTO roleDTO) {
         return ResponseResult.ok();
     }
 

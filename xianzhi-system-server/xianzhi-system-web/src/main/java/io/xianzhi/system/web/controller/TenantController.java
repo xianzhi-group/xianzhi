@@ -23,6 +23,7 @@ import io.xianzhi.system.model.page.TenantPage;
 import io.xianzhi.system.model.vo.TenantVO;
 import io.xianzhi.system.service.TenantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,8 @@ public class TenantController {
      * @param tenantDTO 租户信息入参
      * @return 租户ID
      */
+
+    @PreAuthorize("@xz.hasPermission('sys:tenant:create')")
     @PostMapping(value = "/createTenant")
     public ResponseResult<String> createTenant(@RequestBody @Validated TenantDTO tenantDTO) {
         return ResponseResult.ok(tenantService.createTenant(tenantDTO));
@@ -58,6 +61,7 @@ public class TenantController {
      * @param tenantDTO 租户信息入参
      * @return 响应信息
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:update')")
     @PostMapping(value = "/updateTenant")
     public ResponseResult<Object> updateTenant(@RequestBody @Validated TenantDTO tenantDTO) {
         tenantService.updateTenant(tenantDTO);
@@ -70,6 +74,7 @@ public class TenantController {
      * @param id 租户ID
      * @return 响应信息
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:deleted')")
     @PostMapping(value = "/deleted/{id}")
     public ResponseResult<Object> deleteTenant(@PathVariable(value = "id") String id) {
         tenantService.deleteTenant(id);
@@ -82,6 +87,7 @@ public class TenantController {
      * @param id 租户ID
      * @return 租户详情
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:update,sys:tenant:create')")
     @GetMapping(value = "/details/{id}")
     public ResponseResult<TenantVO> details(@PathVariable(value = "id") String id) {
         return ResponseResult.ok(tenantService.details(id));
@@ -93,6 +99,7 @@ public class TenantController {
      * @param id 租户ID
      * @return 响应信息
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:enable')")
     @PostMapping(value = "/enable/{id}")
     public ResponseResult<Object> enable(@PathVariable(value = "id") String id) {
         return ResponseResult.ok();
@@ -104,6 +111,7 @@ public class TenantController {
      * @param id 租户ID
      * @return 响应信息
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:disable')")
     @PostMapping(value = "/disable/{id}")
     public ResponseResult<Object> disable(@PathVariable(value = "id") String id) {
         return ResponseResult.ok();
@@ -115,6 +123,7 @@ public class TenantController {
      * @param tenantPage 租户查询条件
      * @return 租户列表
      */
+    @PreAuthorize("@xz.hasPermission('sys:tenant:create','sys:tenant:update')")
     @PostMapping(value = "/list")
     public ResponseResult<ListResult<TenantVO>> list(@RequestBody TenantPage tenantPage) {
         return ResponseResult.ok();
