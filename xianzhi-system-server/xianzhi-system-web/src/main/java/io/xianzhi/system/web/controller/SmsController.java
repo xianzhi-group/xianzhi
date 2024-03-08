@@ -14,36 +14,20 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.facade.impl;
+package io.xianzhi.system.web.controller;
 
-import io.xianzhi.common.result.ResponseResult;
-import io.xianzhi.system.facade.UserFacade;
-import io.xianzhi.system.model.vo.AuthUserVO;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 用户接口实现<br>
+ * 短信接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Slf4j
-@Component
-@DubboService
+@RestController
 @RequiredArgsConstructor
-public class UserFacadeImpl implements UserFacade {
-
-    /**
-     * 根据用户名加载用户信息
-     *
-     * @param username 用户名
-     * @return 用户信息
-     */
-    @Override
-    public ResponseResult<AuthUserVO> loadAuthUserByUsername(String username) {
-        return ResponseResult.ok();
-    }
+@RequestMapping(value = "/sms")
+public class SmsController {
 }

@@ -115,6 +115,7 @@ public class XianZhiDaoAuthenticationProvider extends AbstractUserDetailsAuthent
         prepareTimingAttackProtection();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String grantType = request.getParameter("grant_type");
+
         Optional<XianZhiUserDetailsService> optional = SpringUtil.getBeansOfType(XianZhiUserDetailsService.class)
                 .values()
                 .stream()
@@ -123,6 +124,7 @@ public class XianZhiDaoAuthenticationProvider extends AbstractUserDetailsAuthent
         if (optional.isPresent()) {
             userDetailsService = optional.get();
         } else {
+            log.error("没有找到对应的认证服务:{}", grantType);
             throw new OAuth2Exception(CommonCode.FAIL);
         }
 
