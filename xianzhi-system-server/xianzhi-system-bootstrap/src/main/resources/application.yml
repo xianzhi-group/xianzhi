@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: xianzhi-system
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
+
   data:
     redis:
       # 地址

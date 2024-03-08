@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: xianzhi-authorization
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
   data:
     redis:
       # 地址

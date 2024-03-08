@@ -25,6 +25,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import io.xianzhi.authorization.oauth2.XianZhiDaoAuthenticationProvider;
 import io.xianzhi.authorization.properties.OAuth2Properties;
 import io.xianzhi.authorization.providers.PasswordAuthenticationProvider;
+import io.xianzhi.boot.web.filters.TraceIdFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,7 @@ import org.springframework.security.oauth2.server.authorization.settings.Authori
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
 import java.security.KeyStore;
@@ -92,6 +94,7 @@ public class AuthorizationServerConfig {
                 .authorizationServerSettings(AuthorizationServerSettings.builder().issuer(oAuth2Properties.getIssuer()).build());
         http.oauth2ResourceServer((resourceServer) -> resourceServer
                 .jwt(Customizer.withDefaults()));
+        http.addFilterBefore(new TraceIdFilter(), UsernamePasswordAuthenticationFilter.class);
 
         DefaultSecurityFilterChain securityFilterChain = http.build();
         addCustomOAuth2GrantAuthenticationProvider(http);
