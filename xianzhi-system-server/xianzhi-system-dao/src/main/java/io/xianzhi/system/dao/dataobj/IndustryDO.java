@@ -17,27 +17,26 @@
 package io.xianzhi.system.dao.dataobj;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.xianzhi.boot.mybatis.plus.base.IdDO;
+import io.xianzhi.boot.mybatis.plus.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户租户关联实体<br>
+ * 行业信息表实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Data
-@TableName(value = "xz_user_tenant")
+@TableName(value = "xz_industry")
 @EqualsAndHashCode(callSuper = true)
-public class UserTenantDO extends IdDO {
-
+public class IndustryDO extends BaseDO {
     /**
-     * 用户ID
+     * 行业名称
      */
-    private String userId;
+    private String industryName;
     /**
-     * 租户ID
+     * 父级编码
      */
-    private String tenantId;
+    private String parentCode;
 }

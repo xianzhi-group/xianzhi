@@ -22,22 +22,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户租户关联实体<br>
+ * 省份信息实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Data
-@TableName(value = "xz_user_tenant")
+@TableName(value = "xz_provincial")
 @EqualsAndHashCode(callSuper = true)
-public class UserTenantDO extends IdDO {
+public class ProvincialDO extends IdDO {
+    /**
+     * 省名称
+     */
+    private String provincialName;
 
-    /**
-     * 用户ID
-     */
-    private String userId;
-    /**
-     * 租户ID
-     */
-    private String tenantId;
 }

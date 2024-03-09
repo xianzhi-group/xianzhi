@@ -14,30 +14,18 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.dao.dataobj;
+package io.xianzhi.system.dao.mappers;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.xianzhi.boot.mybatis.plus.base.IdDO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.xianzhi.system.dao.dataobj.AreaDO;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 用户租户关联实体<br>
+ * 区域信息持久层<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-@TableName(value = "xz_user_tenant")
-@EqualsAndHashCode(callSuper = true)
-public class UserTenantDO extends IdDO {
-
-    /**
-     * 用户ID
-     */
-    private String userId;
-    /**
-     * 租户ID
-     */
-    private String tenantId;
+@Mapper
+public interface AreaMapper extends BaseMapper<AreaDO> {
 }

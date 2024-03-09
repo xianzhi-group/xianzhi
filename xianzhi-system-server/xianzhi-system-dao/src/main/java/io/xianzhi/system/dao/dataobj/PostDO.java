@@ -16,7 +16,10 @@
 
 package io.xianzhi.system.dao.dataobj;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.xianzhi.boot.mybatis.plus.base.BaseDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 岗位信息实体<br>
@@ -24,5 +27,18 @@ import io.xianzhi.boot.mybatis.plus.base.BaseDO;
  * @author Ethan Wang
  * @since 1.0.0
  */
+@Data
+@TableName(value = "xz_post")
+@EqualsAndHashCode(callSuper = true)
 public class PostDO extends BaseDO {
+
+    /**
+     * 岗位名称
+     */
+    private String postName;
+
+    /**
+     * 租户ID
+     */
+    private String tenantId;
 }

@@ -16,7 +16,10 @@
 
 package io.xianzhi.system.dao.dataobj;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.xianzhi.boot.mybatis.plus.base.BaseDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 部门信息实体<br>
@@ -24,5 +27,18 @@ import io.xianzhi.boot.mybatis.plus.base.BaseDO;
  * @author Ethan Wang
  * @since 1.0.0
  */
+@Data
+@TableName(value = "xz_dept")
+@EqualsAndHashCode(callSuper = true)
 public class DeptDO extends BaseDO {
+
+    /**
+     * 部门名称
+     */
+    private String deptName;
+
+    /**
+     * 租户ID
+     */
+    private String tenantId;
 }

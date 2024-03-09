@@ -22,22 +22,33 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户租户关联实体<br>
+ * 街道信息实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Data
-@TableName(value = "xz_user_tenant")
+@TableName(value = "xz_street")
 @EqualsAndHashCode(callSuper = true)
-public class UserTenantDO extends IdDO {
+public class StreetDO extends IdDO {
+    /**
+     * 街道名称
+     */
+    private String streetName;
+
 
     /**
-     * 用户ID
+     * 区Id
      */
-    private String userId;
+    private String areaId;
+
     /**
-     * 租户ID
+     * 市Id
      */
-    private String tenantId;
+    private String cityId;
+
+    /**
+     * 省Id
+     */
+    private String provincialId;
 }

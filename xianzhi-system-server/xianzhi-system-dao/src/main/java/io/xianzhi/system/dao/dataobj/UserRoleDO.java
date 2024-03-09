@@ -16,7 +16,10 @@
 
 package io.xianzhi.system.dao.dataobj;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.xianzhi.boot.mybatis.plus.base.IdDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 用户角色实体<br>
@@ -24,5 +27,17 @@ import io.xianzhi.boot.mybatis.plus.base.IdDO;
  * @author Ethan Wang
  * @since 1.0.0
  */
+@Data
+@TableName(value = "xz_user_role")
+@EqualsAndHashCode(callSuper = true)
 public class UserRoleDO extends IdDO {
+    /**
+     * 用户ID
+     */
+    private String userId;
+
+    /**
+     * 角色ID
+     */
+    private String roleId;
 }

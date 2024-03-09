@@ -41,13 +41,6 @@ public interface TenantMapper extends BaseMapper<TenantDO> {
      */
     boolean existsTenantByTenantNameAndTenantTypeAndIdNot(@Param("tenantName") String tenantName, @Param("tenantType") String tenantType, @Param("id") String id);
 
-    /**
-     * 判断租户编码是否存在
-     *
-     * @param tenantCode 租户编码
-     * @return 是否存在
-     */
-    boolean existsTenantByTenantCode(@Param("tenantCode") String tenantCode);
 
     /**
      * 根据ID查询租户信息

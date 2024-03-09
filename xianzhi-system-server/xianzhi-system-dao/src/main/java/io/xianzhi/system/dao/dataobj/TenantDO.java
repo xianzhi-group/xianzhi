@@ -16,6 +16,7 @@
 
 package io.xianzhi.system.dao.dataobj;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.xianzhi.boot.mybatis.plus.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,15 +30,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TenantDO extends BaseDO {
-
     /**
      * 租户名称
      */
     private String tenantName;
-    /**
-     * 租户编码
-     */
-    private String tenantCode;
     /**
      * 租户类型 {@link io.xianzhi.system.model.enums.TenantTypeEnum#getCode
      */
@@ -47,6 +43,11 @@ public class TenantDO extends BaseDO {
      */
     private String tenantStatus;
     /**
+     * 是否认证
+     */
+    @TableField("is_authentication")
+    private Boolean authentication;
+    /**
      * 租户描述
      */
     private String tenantDesc;
@@ -55,44 +56,26 @@ public class TenantDO extends BaseDO {
      */
     private String tenantLogo;
     /**
-     * 租户地址
+     * 省级ID
      */
-    private String tenantAddress;
+    private String provincialId;
     /**
-     * 租户联系电话
+     * 市级ID
      */
-    private String tenantPhone;
+    private String cityId;
     /**
-     * 租户联系邮箱
+     * 区级ID
      */
-    private String tenantEmail;
+    private String areaId;
+
     /**
-     * 租户联系人
+     * 行业ID
      */
-    private String tenantContact;
+    private String industryId;
+
     /**
-     * 租户联系人电话
+     * 规模ID
      */
-    private String tenantContactPhone;
-    /**
-     * 租户联系人邮箱
-     */
-    private String tenantContactEmail;
-    /**
-     * 租户联系人地址
-     */
-    private String tenantContactAddress;
-    /**
-     * 租户联系人邮编
-     */
-    private String tenantContactPostcode;
-    /**
-     * 租户联系人微信
-     */
-    private String tenantContactWechat;
-    /**
-     * 租户联系人QQ
-     */
-    private String tenantContactQq;
+    private String scaleId;
 
 }

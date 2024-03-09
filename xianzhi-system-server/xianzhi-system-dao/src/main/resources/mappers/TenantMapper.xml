@@ -36,7 +36,4 @@
         ), 0)
     </select>
 
-    <select id="existsTenantByTenantCode" resultType="boolean">
-        select ifnull((select 1 from xz_tenant where tenant_code = #{tenantCode,jdbcType=VARCHAR} and is_deleted = 0),0)
-    </select>
 </mapper>

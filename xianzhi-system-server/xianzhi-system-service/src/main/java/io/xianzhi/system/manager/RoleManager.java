@@ -14,30 +14,35 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.dao.dataobj;
+package io.xianzhi.system.manager;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.xianzhi.boot.mybatis.plus.base.IdDO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import io.xianzhi.boot.redis.RedisHandler;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
- * 用户租户关联实体<br>
+ * 角色管理<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-@TableName(value = "xz_user_tenant")
-@EqualsAndHashCode(callSuper = true)
-public class UserTenantDO extends IdDO {
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class RoleManager {
+    /**
+     * 缓存处理
+     */
+    private final RedisHandler redisHandler;
 
     /**
-     * 用户ID
+     * 返回租户默认管理员角色ID
+     *
+     * @return 租户默认管理员角色ID
      */
-    private String userId;
-    /**
-     * 租户ID
-     */
-    private String tenantId;
+    public String getDefaultTenantAdminRole() {
+        return "1";
+    }
+
 }
