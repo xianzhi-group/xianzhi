@@ -48,7 +48,6 @@ public class TenantController {
      * @param tenantDTO 租户信息入参
      * @return 租户ID
      */
-
     @PreAuthorize("@xz.hasPermission('sys:tenant:create')")
     @PostMapping(value = "/createTenant")
     public ResponseResult<String> createTenant(@RequestBody @Validated TenantDTO tenantDTO) {

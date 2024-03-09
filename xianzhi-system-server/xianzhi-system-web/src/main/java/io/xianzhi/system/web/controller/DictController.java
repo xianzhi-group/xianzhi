@@ -16,7 +16,15 @@
 
 package io.xianzhi.system.web.controller;
 
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.dto.DictDTO;
+import io.xianzhi.system.model.page.DictPage;
+import io.xianzhi.system.model.vo.DictVO;
+import io.xianzhi.system.service.DictService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,4 +38,52 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/dict")
 public class DictController {
+    /**
+     * 字典服务
+     */
+    private final DictService dictService;
+
+    /**
+     * 新增字典
+     *
+     * @param dto 字典信息入参
+     * @return 字典ID
+     */
+    @PostMapping(value = "/createDict")
+    public ResponseResult<String> createDict(DictDTO dto) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 修改字典信息
+     *
+     * @param dto 字典信息入参
+     * @return 响应信息
+     */
+    @PostMapping(value = "/updateDict")
+    public ResponseResult<Object> updateDict(DictDTO dto) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 删除字典
+     *
+     * @param id 字典ID
+     * @return 响应信息
+     */
+    @PostMapping(value = "/deleted/{id}")
+    public ResponseResult<Object> deleted(@PathVariable(value = "id") String id) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 查询字典列表
+     *
+     * @param dictPage 字典分页查询入参
+     * @return 字典列表
+     */
+    @PostMapping(value = "/list")
+    public ResponseResult<ListResult<DictVO>> list(DictPage dictPage) {
+        return ResponseResult.ok();
+    }
 }
