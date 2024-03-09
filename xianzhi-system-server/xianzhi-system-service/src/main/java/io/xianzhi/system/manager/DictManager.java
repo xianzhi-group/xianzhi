@@ -17,7 +17,6 @@
 package io.xianzhi.system.manager;
 
 import io.xianzhi.boot.redis.RedisHandler;
-import io.xianzhi.system.dao.mappers.DictMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -36,10 +35,7 @@ public class DictManager {
      * redis操作
      */
     private final RedisHandler redisHandler;
-    /**
-     * 字典持久层
-     */
-    private final DictMapper dictMapper;
+
 
     /**
      * 判断字典项是否存在<br>
