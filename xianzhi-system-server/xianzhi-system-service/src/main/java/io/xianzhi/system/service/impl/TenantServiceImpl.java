@@ -18,14 +18,17 @@ package io.xianzhi.system.service.impl;
 
 import io.xianzhi.business.context.XianZhiUserContext;
 import io.xianzhi.business.enums.UserTypeEnum;
+import io.xianzhi.common.code.CommonCode;
 import io.xianzhi.common.exception.BizException;
 import io.xianzhi.system.code.SystemErrorCode;
 import io.xianzhi.system.dao.dataobj.*;
 import io.xianzhi.system.dao.mappers.*;
 import io.xianzhi.system.manager.AreaManager;
+import io.xianzhi.system.manager.DictManager;
 import io.xianzhi.system.manager.RoleManager;
 import io.xianzhi.system.manager.TenantManager;
 import io.xianzhi.system.model.dto.TenantDTO;
+import io.xianzhi.system.model.enums.DictEnum;
 import io.xianzhi.system.model.enums.TenantStatusEnum;
 import io.xianzhi.system.model.enums.TenantTypeEnum;
 import io.xianzhi.system.model.vo.TenantVO;
@@ -34,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 /**
  * 租户接口实现<br>
@@ -77,6 +81,10 @@ public class TenantServiceImpl implements TenantService {
      * 部门信息持久层
      */
     private final DeptMapper deptMapper;
+    /**
+     * 字典管理
+     */
+    private final DictManager dictManager;
 
     /**
      * 创建租户<br>
@@ -110,7 +118,6 @@ public class TenantServiceImpl implements TenantService {
         deptDO.setDeptName("默认部门");
         deptDO.setTenantId(tenantDO.getId());
         deptMapper.insert(deptDO);
-
         return tenantDO.getId();
     }
 
@@ -121,7 +128,10 @@ public class TenantServiceImpl implements TenantService {
      */
     @Override
     public void updateTenant(TenantDTO tenantDTO) {
-
+        // 检查入参
+        TenantDO tenantDO = checkedTenantDto(tenantDTO);
+        tenantManager.deletedAllTenantCacheById(tenantDO.getId());
+        tenantMapper.updateById(tenantDO);
     }
 
     /**
@@ -131,6 +141,10 @@ public class TenantServiceImpl implements TenantService {
      */
     @Override
     public void deleteTenant(String id) {
+        if (StringUtils.hasText(id)) {
+
+            tenantManager.deletedAllTenantCacheById(id);
+        }
 
     }
 
@@ -145,37 +159,56 @@ public class TenantServiceImpl implements TenantService {
         return null;
     }
 
-
+    /**
+     * 检查租户信息
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 租户信息
+     */
     private TenantDO checkedTenantDto(TenantDTO tenantDTO) {
         TenantDO tenantDO;
-        // 获取当前用户类型和ID
-        String userType = XianZhiUserContext.getCurrentUserType();
-        String tenantType;
-        if (userType.equals(UserTypeEnum.SYSTEM.getCode())) {
-            tenantType = TenantTypeEnum.SYSTEM.getCode();
-            tenantDO = tenantManager.getTenantById(tenantDTO.getId());
-            tenantDO.setTenantStatus(tenantDTO.getTenantStatus());
-        } else {
-            tenantType = TenantTypeEnum.ENTERPRISE.getCode();
-            tenantDO = new TenantDO();
-            tenantDO.setTenantName(tenantDTO.getTenantName());
-            tenantDO.setTenantStatus(tenantDTO.getTenantStatus() == null ? TenantStatusEnum.NORMAL.getCode() : tenantDTO.getTenantStatus());
-            tenantDO.setAuthentication(TenantTypeEnum.SYSTEM.getCode().equals(tenantType));
+        // 判断省市区是否存在
+        areaManager.checked(tenantDTO.getProvincialId(), tenantDTO.getCityId(), tenantDTO.getAreaId());
 
-        }
+        String userType = XianZhiUserContext.getCurrentUserType();
+        // 判断租户类型
+        String tenantType = userType.equals(UserTypeEnum.SYSTEM.getCode()) ? TenantTypeEnum.SYSTEM.getCode() : TenantTypeEnum.ENTERPRISE.getCode();
         // 判断租户名称是否存在
         if (tenantMapper.existsTenantByTenantNameAndTenantTypeAndIdNot(tenantDTO.getTenantName(), tenantType, null)) {
             throw new BizException(SystemErrorCode.TENANT_NAME_EXISTS);
         }
-        // 判断省市区是否存在
-        areaManager.checked(tenantDTO.getProvincialId(), tenantDTO.getCityId(), tenantDTO.getAreaId());
+        if (StringUtils.hasText(tenantDTO.getId())) {
+            // 修改操作，检查租户是否存在
+            tenantDO = tenantManager.getTenantById(tenantDTO.getId());
+            if (null == tenantDO) {
+                log.error("检查租户信息入参失败,租户ID:{}不存在", tenantDTO.getId());
+                throw new BizException(SystemErrorCode.TENANT_NOT_EXISTS);
+            }
+        } else {
+            tenantDO = new TenantDO();
+            // 新增租户默认状态都是正常
+            tenantDO.setTenantStatus(TenantStatusEnum.NORMAL.getCode());
+            tenantDO.setTenantName(tenantDTO.getTenantName());
+            tenantDO.setAuthentication(TenantTypeEnum.SYSTEM.getCode().equals(tenantType));
+            tenantDO.setTenantType(tenantType);
+            // 默认都是未认证状态
+            tenantDO.setAuthentication(false);
+        }
+
         tenantDO.setProvincialId(tenantDTO.getProvincialId());
         tenantDO.setCityId(tenantDTO.getCityId());
         tenantDO.setAreaId(tenantDTO.getAreaId());
-        tenantDO.setIndustryId(tenantDTO.getIndustryId());
         tenantDO.setTenantLogo(tenantDTO.getTenantLogo());
+        if (!dictManager.existsItemById(tenantDTO.getScaleId(), DictEnum.SCALE.getCode())) {
+            log.error("检查租户信息入参失败,规模ID:{}不存在", tenantDTO.getScaleId());
+            throw new BizException(CommonCode.PARAMETER_CHECK_FAILED);
+        }
+        tenantDO.setIndustryId(tenantDTO.getIndustryId());
+        if (!dictManager.existsItemById(tenantDTO.getScaleId(), DictEnum.INDUSTRY.getCode())) {
+            log.error("检查租户信息入参失败,行业ID:{}不存在", tenantDTO.getScaleId());
+            throw new BizException(CommonCode.PARAMETER_CHECK_FAILED);
+        }
         tenantDO.setTenantDesc(tenantDTO.getTenantDesc());
-
         return tenantDO;
     }
 

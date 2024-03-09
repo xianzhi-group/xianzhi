@@ -69,6 +69,17 @@ public class TenantManager {
         }
         log.error("根据租户ID查询租户信息失败,租户ID为空");
         return null;
+    }
 
+    /**
+     * 删除所有租户缓存
+     *
+     * @param id 租户ID
+     */
+    public void deletedAllTenantCacheById(String id) {
+        if (StringUtils.hasText(id)) {
+            String key = String.format(SystemCacheKeyConstant.TENANT_BY_ID, id);
+            redisHandler.deleted(key);
+        }
     }
 }
