@@ -85,6 +85,14 @@ public class TenantServiceImpl implements TenantService {
      * 字典管理
      */
     private final DictManager dictManager;
+    /**
+     * 用户部门关联关系持久层
+     */
+    private final UserDeptMapper userDeptMapper;
+    /**
+     * 用户岗位关联关系持久层
+     */
+    private final UserPostMapper userPostMapper;
 
     /**
      * 创建租户<br>
@@ -113,11 +121,22 @@ public class TenantServiceImpl implements TenantService {
         postDO.setPostName("管理员");
         postDO.setTenantId(tenantDO.getId());
         postMapper.insert(postDO);
+        // 保存用户岗位关联关系
+        UserPostDO userPostDO = new UserPostDO();
+        userPostDO.setPostId(postDO.getId());
+        userPostDO.setUserId(XianZhiUserContext.getCurrentUserId());
+        userPostMapper.insert(userPostDO);
         // 初始化部门信息
         DeptDO deptDO = new DeptDO();
         deptDO.setDeptName("默认部门");
         deptDO.setTenantId(tenantDO.getId());
         deptMapper.insert(deptDO);
+        // 保存用户部门关联关系
+        UserDeptDO userDeptDO = new UserDeptDO();
+        userDeptDO.setUserId(XianZhiUserContext.getCurrentUserId());
+        userDeptDO.setDeptId(deptDO.getId());
+        userDeptMapper.insert(userDeptDO);
+
         return tenantDO.getId();
     }
 

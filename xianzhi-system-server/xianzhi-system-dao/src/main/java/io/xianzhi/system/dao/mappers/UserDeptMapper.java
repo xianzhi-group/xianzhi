@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.converts;
+package io.xianzhi.system.dao.mappers;
 
-import io.xianzhi.system.dao.dataobj.TenantDO;
-import io.xianzhi.system.model.dto.TenantDTO;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.xianzhi.system.dao.dataobj.UserDeptDO;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 租户信息转换<br>
+ * 用户部门信息持久层<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public class TenantConvert {
-
-    /**
-     * 租户信息转换<br>
-     *
-     * @param tenantDO 租户信息
-     * @return 租户信息
-     */
-    public static TenantDTO convert(TenantDO tenantDO) {
-        return null;
-    }
+@Mapper
+public interface UserDeptMapper extends BaseMapper<UserDeptDO> {
 }

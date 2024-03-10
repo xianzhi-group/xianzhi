@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.converts;
+package io.xianzhi.system.dao.dataobj;
 
-import io.xianzhi.system.dao.dataobj.TenantDO;
-import io.xianzhi.system.model.dto.TenantDTO;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.xianzhi.boot.mybatis.plus.base.IdDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 租户信息转换<br>
+ * 用户部门信息实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public class TenantConvert {
+@Data
+@TableName(value = "xz_user_dept")
+@EqualsAndHashCode(callSuper = true)
+public class UserDeptDO extends IdDO {
 
     /**
-     * 租户信息转换<br>
-     *
-     * @param tenantDO 租户信息
-     * @return 租户信息
+     * 用户Id
      */
-    public static TenantDTO convert(TenantDO tenantDO) {
-        return null;
-    }
+    private String userId;
+    /**
+     * 部门Id
+     */
+    private String deptId;
 }
