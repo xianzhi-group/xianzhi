@@ -16,6 +16,7 @@
 
 package io.xianzhi.system.facade.impl;
 
+import io.xianzhi.common.code.CommonCode;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.dao.mappers.UserMapper;
 import io.xianzhi.system.facade.UserFacade;
@@ -51,8 +52,10 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public ResponseResult<AuthUserVO> loadAuthUserByUsername(String username) {
         if (StringUtils.hasText(username)) {
+            AuthUserVO authUserVO = userMapper.loadAuthUserByUsername(username);
 
         }
-        return ResponseResult.ok();
+        log.error("根据用户名加载用户信息失败，用户名不能为空");
+        return ResponseResult.fail(CommonCode.PARAMETER_CHECK_FAILED);
     }
 }
