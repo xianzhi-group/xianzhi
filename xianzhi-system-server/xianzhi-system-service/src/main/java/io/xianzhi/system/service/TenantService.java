@@ -57,4 +57,5 @@ public interface TenantService {
      * @return 租户详情
      */
     TenantVO details(String id);
+
 }

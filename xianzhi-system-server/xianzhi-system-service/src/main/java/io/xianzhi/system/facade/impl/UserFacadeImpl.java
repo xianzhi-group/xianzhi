@@ -17,12 +17,14 @@
 package io.xianzhi.system.facade.impl;
 
 import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.dao.mappers.UserMapper;
 import io.xianzhi.system.facade.UserFacade;
 import io.xianzhi.system.model.vo.AuthUserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * 用户接口实现<br>
@@ -35,6 +37,10 @@ import org.springframework.stereotype.Component;
 @DubboService
 @RequiredArgsConstructor
 public class UserFacadeImpl implements UserFacade {
+    /**
+     * 用户信息持久层
+     */
+    private final UserMapper userMapper;
 
     /**
      * 根据用户名加载用户信息
@@ -44,6 +50,9 @@ public class UserFacadeImpl implements UserFacade {
      */
     @Override
     public ResponseResult<AuthUserVO> loadAuthUserByUsername(String username) {
+        if (StringUtils.hasText(username)) {
+
+        }
         return ResponseResult.ok();
     }
 }

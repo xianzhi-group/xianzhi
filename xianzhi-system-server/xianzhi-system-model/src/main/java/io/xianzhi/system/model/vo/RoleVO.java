@@ -19,6 +19,7 @@ package io.xianzhi.system.model.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 角色信息出参<br>
@@ -28,4 +29,20 @@ import java.io.Serializable;
  */
 @Data
 public class RoleVO implements Serializable {
+    /**
+     * 角色ID
+     */
+    private String id;
+    /**
+     * 角色名称
+     */
+    private String roleName;
+    /**
+     * 角色描述
+     */
+    private String roleDesc;
+    /**
+     * 角色对应的资源
+     */
+    private List<ResourceVO> resources;
 }

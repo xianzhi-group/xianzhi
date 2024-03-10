@@ -28,4 +28,16 @@ import java.io.Serializable;
  */
 @Data
 public class ResourceVO implements Serializable {
+    /**
+     * 资源ID
+     */
+    private String id;
+    /**
+     * 资源名称
+     */
+    private String resourceName;
+    /**
+     * 资源标识符
+     */
+    private String resourceKey;
 }
