@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.cms.dao.dataobj;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.xianzhi.boot.mybatis.plus.base.BaseDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 代码仓库分组接口<br>
+ * 站点信息实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+@Data
+@TableName("xz_site")
+@EqualsAndHashCode(callSuper = true)
+public class SiteDO extends BaseDO {
+
+    /**
+     * 租户ID
+     */
+    private String tenantId;
 }

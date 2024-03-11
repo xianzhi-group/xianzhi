@@ -14,20 +14,30 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.cms.model.vo;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
- * 代码仓库分组接口<br>
+ * 站点信息出参<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+@Data
+public class SiteVO implements Serializable {
+    /**
+     * 站点ID
+     */
+    private String id;
+    /**
+     * 站点名称
+     */
+    private String siteName;
+    /**
+     * 是否默认站点
+     */
+    private boolean defaultFlag;
 }

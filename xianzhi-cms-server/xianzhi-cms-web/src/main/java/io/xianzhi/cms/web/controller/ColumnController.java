@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+package io.xianzhi.cms.web.controller;
 
 /**
- * 代码仓库分组接口<br>
+ * 栏目接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+public class ColumnController {
 }

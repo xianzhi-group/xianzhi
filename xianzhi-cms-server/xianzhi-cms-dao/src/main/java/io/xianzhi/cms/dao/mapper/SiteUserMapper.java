@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.cms.dao.mapper;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.xianzhi.cms.dao.dataobj.SiteUserDO;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 代码仓库分组接口<br>
+ * 站点用户信息持久层<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+@Mapper
+public interface SiteUserMapper extends BaseMapper<SiteUserDO> {
 }

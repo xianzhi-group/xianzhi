@@ -14,20 +14,33 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.cms.web.controller;
 
+import io.xianzhi.cms.model.vo.SiteVO;
+import io.xianzhi.common.result.ResponseResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
- * 代码仓库分组接口<br>
+ * 站点接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+@RequestMapping(value = "/site")
+public class SiteController {
+
+    /**
+     * 获取当前用户所具有的站点信息
+     *
+     * @return 当前用户所具有的站点信息
+     */
+    public ResponseResult<List<SiteVO>> me() {
+        return ResponseResult.ok();
+    }
 }

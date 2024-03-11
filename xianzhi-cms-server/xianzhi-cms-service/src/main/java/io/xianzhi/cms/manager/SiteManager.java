@@ -14,20 +14,33 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.cms.manager;
 
+import io.xianzhi.boot.redis.RedisHandler;
+import io.xianzhi.cms.dao.mapper.SiteUserMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
- * 代码仓库分组接口<br>
+ * 站点管理<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
+@Slf4j
+@Component
 @RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+public class SiteManager {
+
+    /**
+     * Redis操作
+     */
+    private final RedisHandler redisHandler;
+    /**
+     * 站点用户信息持久层
+     */
+    private final SiteUserMapper siteUserMapper;
+
+
 }

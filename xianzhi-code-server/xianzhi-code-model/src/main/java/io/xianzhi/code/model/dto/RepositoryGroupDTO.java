@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package io.xianzhi.code.web.controller;
+package io.xianzhi.code.model.dto;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
- * 代码仓库分组接口<br>
+ * 仓库分组入参<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/repository/group")
-public class RepositoryGroupController {
+@Data
+public class RepositoryGroupDTO implements Serializable {
 }
