@@ -21,6 +21,7 @@ import io.xianzhi.business.enums.UserTypeEnum;
 import io.xianzhi.business.utils.WebUtil;
 import io.xianzhi.cms.dao.mapper.SiteMapper;
 import io.xianzhi.cms.dao.mapper.SiteUserMapper;
+import io.xianzhi.cms.manager.SiteManager;
 import io.xianzhi.cms.model.vo.SiteVO;
 import io.xianzhi.cms.service.SiteService;
 import io.xianzhi.common.code.CommonCode;
@@ -51,6 +52,11 @@ public class SiteServiceImpl implements SiteService {
     private final SiteUserMapper siteUserMapper;
 
     /**
+     * 站点管理
+     */
+    private final SiteManager siteManager;
+
+    /**
      * 获取当前用户所属具有的站点信息
      *
      * @return 站点信息
@@ -64,21 +70,11 @@ public class SiteServiceImpl implements SiteService {
         } else if (userType.equals(UserTypeEnum.ENTERPRISE.getCode())) {
             String tenantId = WebUtil.getCurrentTenantId();
             // 检查用户是否属于该租户
-            checkedTenantUser(tenantId, userId);
+            siteManager.checkedTenantUser(tenantId, userId);
             return siteMapper.querySiteByTenantIdAndUserId(tenantId, userId);
         } else {
             log.error("用户类型错误，userId:{}", userId);
             throw new BizException(CommonCode.PARAMETER_CHECK_FAILED);
         }
-    }
-
-    /**
-     * 检查用户是否属于该租户
-     *
-     * @param tenantId 租户ID
-     * @param userId   用户ID
-     */
-    private void checkedTenantUser(String tenantId, String userId) {
-
     }
 }

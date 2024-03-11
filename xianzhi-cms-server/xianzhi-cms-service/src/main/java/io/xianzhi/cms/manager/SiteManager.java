@@ -43,4 +43,9 @@ public class SiteManager {
     private final SiteUserMapper siteUserMapper;
 
 
+    public void checkedTenantUser(String tenantId, String id) {
+
+    }
+
+
 }
