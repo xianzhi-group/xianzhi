@@ -53,6 +53,10 @@ public class UserFacadeImpl implements UserFacade {
     public ResponseResult<AuthUserVO> loadAuthUserByUsername(String username) {
         if (StringUtils.hasText(username)) {
             AuthUserVO authUserVO = userMapper.loadAuthUserByUsername(username);
+            if (null == authUserVO) {
+                log.error("根据用户名加载用户信息失败，用户:{}不存在", username);
+                return ResponseResult.ok();
+            }
 
         }
         log.error("根据用户名加载用户信息失败，用户名不能为空");
