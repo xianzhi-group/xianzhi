@@ -17,23 +17,15 @@
 package io.xianzhi.cms.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.xianzhi.cms.dao.dataobj.SiteUserDO;
+import io.xianzhi.cms.dao.dataobj.SiteRoleDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 站点用户信息持久层<br>
+ * 站点角色信息持久层<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Mapper
-public interface SiteUserMapper extends BaseMapper<SiteUserDO> {
-
-
-    /**
-     * 根据站点ID删除站点用户信息
-     *
-     * @param siteId 站点ID
-     */
-    void deletedBySiteId(String siteId);
+public interface SiteRoleMapper extends BaseMapper<SiteRoleDO> {
 }

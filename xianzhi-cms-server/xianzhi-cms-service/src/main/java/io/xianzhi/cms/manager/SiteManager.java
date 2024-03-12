@@ -17,6 +17,7 @@
 package io.xianzhi.cms.manager;
 
 import io.xianzhi.boot.redis.RedisHandler;
+import io.xianzhi.cms.dao.dataobj.SiteDO;
 import io.xianzhi.cms.dao.mapper.SiteUserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,27 @@ public class SiteManager {
 
 
     public void checkedTenantUser(String tenantId, String id) {
+
+    }
+
+
+    /**
+     * 根据ID查询站点信息
+     *
+     * @param id 站点ID
+     * @return 站点信息
+     */
+    public SiteDO getSiteById(String id) {
+        return null;
+    }
+
+
+    /**
+     * 发布站点删除事件
+     *
+     * @param id 站点ID
+     */
+    public void publishSiteDeletedEvent(String id) {
 
     }
 

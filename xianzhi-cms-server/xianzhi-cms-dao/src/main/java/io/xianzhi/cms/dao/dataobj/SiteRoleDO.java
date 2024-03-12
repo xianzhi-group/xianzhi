@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.dao.mapper;
+package io.xianzhi.cms.dao.dataobj;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.xianzhi.cms.dao.dataobj.SiteUserDO;
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.xianzhi.boot.mybatis.plus.base.BaseDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 站点用户信息持久层<br>
+ * 站点角色信息实体<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Mapper
-public interface SiteUserMapper extends BaseMapper<SiteUserDO> {
-
-
-    /**
-     * 根据站点ID删除站点用户信息
-     *
-     * @param siteId 站点ID
-     */
-    void deletedBySiteId(String siteId);
+@Data
+@TableName(value = "xz_site_role")
+@EqualsAndHashCode(callSuper = true)
+public class SiteRoleDO extends BaseDO {
 }

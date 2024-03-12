@@ -22,6 +22,7 @@ import io.xianzhi.cms.dao.dataobj.SiteDO;
 import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -69,4 +70,12 @@ public interface SiteMapper extends BaseMapper<SiteDO> {
      * @return 站点信息
      */
     List<SiteDO> querySiteByTenantId(String tenantId);
+
+
+    /**
+     * 删除站点
+     *
+     * @param id 站点ID
+     */
+    void deleted(@Param("id") String id);
 }

@@ -16,7 +16,9 @@
 
 package io.xianzhi.cms.service;
 
+import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
+import io.xianzhi.common.result.ListResult;
 
 import java.util.List;
 
@@ -35,5 +37,26 @@ public interface SiteService {
      */
     List<SiteVO> me();
 
+    /**
+     * 查询租户下的站点列表
+     *
+     * @param sitePage 查询条件
+     * @return 站点列表
+     */
+    ListResult<SiteVO> list(SitePage sitePage);
 
+    /**
+     * 租户删除站点
+     *
+     * @param id 站点ID
+     */
+    void deleted(String id);
+
+    /**
+     * 查询站点详情
+     *
+     * @param id 站点ID
+     * @return 站点详情
+     */
+    SiteVO details(String id);
 }

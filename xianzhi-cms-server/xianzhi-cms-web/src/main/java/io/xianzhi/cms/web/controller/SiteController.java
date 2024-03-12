@@ -23,6 +23,7 @@ import io.xianzhi.cms.service.SiteService;
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,13 +67,24 @@ public class SiteController {
         return ResponseResult.ok(siteService.list(sitePage));
     }
 
-
+    /**
+     * 查询站点详情
+     *
+     * @param id 站点ID
+     * @return 站点详情
+     */
     public ResponseResult<SiteVO> details(String id) {
         return ResponseResult.ok(siteService.details(id));
     }
 
-
-    public ResponseResult<Object> deleted(String id) {
+    /**
+     * 删除站点
+     *
+     * @param id 站点ID
+     * @return 响应信息
+     */
+    @PostMapping(value = "/deleted/{id}")
+    public ResponseResult<Object> deleted(@PathVariable(value = "id") String id) {
         siteService.deleted(id);
         return ResponseResult.ok();
     }

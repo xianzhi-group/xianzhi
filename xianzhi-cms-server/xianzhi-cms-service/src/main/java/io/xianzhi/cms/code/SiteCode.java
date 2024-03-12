@@ -32,7 +32,16 @@ public enum SiteCode implements Result {
     /**
      * 默认站点已经存在
      */
-    DEFAULT_SITE_EXISTS("CMS-SITE-001", false, "default.site.exists");
+    DEFAULT_SITE_EXISTS("CMS-SITE-001", false, "default.site.exists"),
+    /**
+     * 站点不存在
+     */
+    SITE_NOT_EXISTS("CMS-SITE-002", false, "site.not.exists"),
+    /**
+     * 默认站点不支持删除
+     */
+    DEFAULT_SITE_NOT_SUPPORT_DELETED("CMS-SITE-003", false, "default.site.not.support.deleted"),
+    ;
 
 
     /**
