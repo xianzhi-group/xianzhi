@@ -25,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,6 +48,17 @@ public class TenantManager {
      * 租户信息持久层
      */
     private final TenantMapper tenantMapper;
+
+
+    /**
+     * 根据用户ID查询对应的租户信息
+     *
+     * @param userId 用户ID
+     * @return 租户信息
+     */
+    public List<TenantDO> getTenantByUserId(String userId) {
+        return null;
+    }
 
     /**
      * 根据租户ID查询租户信息<br>

@@ -19,6 +19,8 @@ package io.xianzhi.system.service;
 import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.vo.TenantVO;
 
+import java.util.List;
+
 /**
  * 租户接口<br>
  *
@@ -26,6 +28,13 @@ import io.xianzhi.system.model.vo.TenantVO;
  * @since 1.0.0
  */
 public interface TenantService {
+
+    /**
+     * 查询当前用户所具有的租户信息
+     *
+     * @return 当前用户所具有的租户信息
+     */
+    List<TenantVO> me();
 
 
     /**

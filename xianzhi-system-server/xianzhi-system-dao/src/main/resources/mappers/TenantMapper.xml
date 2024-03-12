@@ -36,4 +36,6 @@
         ), 0)
     </select>
 
+    <select id="existsSystemTenant" resultType="java.lang.Boolean">
+    </select>
 </mapper>

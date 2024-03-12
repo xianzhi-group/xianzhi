@@ -18,14 +18,14 @@ package io.xianzhi.system.web.controller.admin;
 
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.page.TenantPage;
 import io.xianzhi.system.model.vo.TenantVO;
 import io.xianzhi.system.service.admin.AdminTenantService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 租户接口<br>
@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0.0
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "/mng/tenant")
 public class AdminTenantController {
 
@@ -48,8 +49,45 @@ public class AdminTenantController {
      * @param tenantPage 租户查询条件
      * @return 租户列表
      */
+    @PreAuthorize("@xz.hasPermission('admin:tenant:list','admin:tenant:create','admin:tenant:update','admin:tenant:deleted')")
     @PostMapping(value = "/list")
-    public ResponseResult<ListResult<TenantVO>> list(TenantPage tenantPage) {
+    public ResponseResult<ListResult<TenantVO>> list(@RequestBody @Validated TenantPage tenantPage) {
+        return ResponseResult.ok(adminTenantService.list(tenantPage));
+    }
+
+    /**
+     * 新增一个租户
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 租户ID
+     */
+    @PreAuthorize("@xz.hasPermission('admin:tenant:create')")
+    @PostMapping(value = "/create")
+    public ResponseResult<String> create(@RequestBody @Validated TenantDTO tenantDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 修改一个租户
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 响应信息
+     */
+    @PreAuthorize("@xz.hasPermission('admin:tenant:update')")
+    @PostMapping(value = "/update")
+    public ResponseResult<Object> update(@RequestBody @Validated TenantDTO tenantDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 查询租户详情
+     *
+     * @param tenantId 租户ID
+     * @return 租户详情
+     */
+    @PreAuthorize("@xz.hasPermission('admin:tenant:details')")
+    @PostMapping(value = "/details/{tenantId}")
+    public ResponseResult<TenantVO> details(@PathVariable(value = "tenantId") String tenantId) {
         return ResponseResult.ok();
     }
 
@@ -60,7 +98,7 @@ public class AdminTenantController {
      * @param id 租户ID
      * @return 响应信息
      */
-    @PreAuthorize("@xz.hasPermission('sys:tenant:deleted')")
+    @PreAuthorize("@xz.hasPermission('admin:tenant:deleted')")
     @PostMapping(value = "/deleted/{id}")
     public ResponseResult<Object> deleteTenant(@PathVariable(value = "id") String id) {
         return ResponseResult.ok();

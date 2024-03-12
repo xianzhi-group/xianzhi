@@ -37,7 +37,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 租户接口实现<br>
@@ -93,6 +98,29 @@ public class TenantServiceImpl implements TenantService {
      * 用户岗位关联关系持久层
      */
     private final UserPostMapper userPostMapper;
+
+    /**
+     * 查询当前用户所具有的租户信息
+     *
+     * @return 当前用户所具有的租户信息
+     */
+    @Override
+    public List<TenantVO> me() {
+        String userId = XianZhiUserContext.getCurrentUserId();
+        List<TenantDO> tenants = tenantManager.getTenantByUserId(userId);
+        if (ObjectUtils.isEmpty(tenants)) {
+            log.info("当前用户:{},没有租户信息", userId);
+            return Collections.emptyList();
+        }
+        // 返回简单的租户信息列表
+        return tenants.stream().map(tenantDO -> {
+            TenantVO tenantVO = new TenantVO();
+            tenantVO.setId(tenantDO.getId());
+            tenantVO.setTenantName(tenantDO.getTenantName());
+            tenantVO.setDefaultFlag(tenantDO.getDefaultFlag());
+            return tenantVO;
+        }).collect(Collectors.toList());
+    }
 
     /**
      * 创建租户<br>

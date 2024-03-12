@@ -14,38 +14,13 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.model.vo;
-
-import lombok.Data;
-
-import java.io.Serializable;
+package io.xianzhi.business.annotations;
 
 /**
- * 租户信息出参<br>
+ * 租户用户类型检查注解<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-public class TenantVO implements Serializable {
-
-    /**
-     * 租户ID
-     */
-    private String id;
-
-    /**
-     * 租户名称
-     */
-    private String tenantName;
-
-    /**
-     * 是否默认租户
-     */
-    private Boolean defaultFlag;
-
-    /**
-     * 租户管理员
-     */
-    private UserVO admin;
+public @interface Tenant {
 }

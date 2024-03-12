@@ -39,6 +39,16 @@ public class XianZhiUserContext extends UserContext {
     }
 
     /**
+     * 设置一个默认的匿名者用户信息上下文，为了解决无法获取用户信息
+     * 但是需要保存修改数据的情况获取不到用户信息的问题
+     */
+    public static void setAnonymousUser() {
+        XianZhiUserBO userBO = new XianZhiUserBO();
+        userBO.setId("Anonymous");
+        set(userBO);
+    }
+
+    /**
      * 获取用户信息上下文
      *
      * @return 用户信息上下文

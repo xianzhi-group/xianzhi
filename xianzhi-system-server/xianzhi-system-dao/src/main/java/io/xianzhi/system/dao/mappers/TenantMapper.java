@@ -49,4 +49,9 @@ public interface TenantMapper extends BaseMapper<TenantDO> {
      * @return 租户信息
      */
     TenantDO queryById(@Param("id") String id);
+
+    /**
+     * 判断是否存在的系统租户
+     */
+    boolean existsSystemTenant();
 }

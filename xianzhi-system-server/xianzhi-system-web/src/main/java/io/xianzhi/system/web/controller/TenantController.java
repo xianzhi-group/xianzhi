@@ -16,6 +16,7 @@
 
 package io.xianzhi.system.web.controller;
 
+import io.xianzhi.business.annotations.Tenant;
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.TenantDTO;
@@ -26,6 +27,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 租户管理接口<br>
@@ -41,6 +44,18 @@ public class TenantController {
      * 租户服务
      */
     private final TenantService tenantService;
+
+
+    /**
+     * 查询当前用户所具有的租户信息
+     *
+     * @return 当前用户所具有的租户信息
+     */
+    @Tenant
+    @GetMapping(value = "/me")
+    public ResponseResult<List<TenantVO>> me() {
+        return ResponseResult.ok(tenantService.me());
+    }
 
     /**
      * 创建租户<br>

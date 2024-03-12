@@ -17,6 +17,7 @@
 package io.xianzhi.system.dao.dataobj;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import io.xianzhi.boot.mybatis.plus.MyBatisConstant;
 import io.xianzhi.boot.mybatis.plus.base.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -77,5 +78,11 @@ public class TenantDO extends BaseDO {
      * 规模ID
      */
     private String scaleId;
+
+    /**
+     * 是否默认租户
+     */
+    @TableField(value = MyBatisConstant.IS_DEFAULT)
+    private Boolean defaultFlag;
 
 }
