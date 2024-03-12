@@ -14,20 +14,25 @@
  * limitations under the License.
  */
 
-import {createRouter, createWebHistory} from 'vue-router'
+package io.xianzhi.system.service.admin;
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/login',
-      name: 'login',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/login/index.vue')
-    }
-  ]
-})
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.page.TenantPage;
+import io.xianzhi.system.model.vo.TenantVO;
 
-export default router
+/**
+ * 管理员租户接口<br>
+ *
+ * @author Ethan Wang
+ * @since 1.0.0
+ */
+public interface AdminTenantService {
+
+    /**
+     * 查询所有租户列表
+     *
+     * @param tenantPage 查询条件
+     * @return 租户列表
+     */
+    ListResult<TenantVO> list(TenantPage tenantPage);
+}

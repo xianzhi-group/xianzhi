@@ -50,7 +50,6 @@ public class SiteController {
      */
     @PostMapping(value = "/list")
     public ResponseResult<ListResult<SiteVO>> list(SitePage sitePage) {
-        sitePage.setAdmin(true);
         return ResponseResult.ok(adminSiteService.list(sitePage));
     }
 

@@ -67,18 +67,6 @@ public class TenantController {
         return ResponseResult.ok();
     }
 
-    /**
-     * 删除租户<br>
-     *
-     * @param id 租户ID
-     * @return 响应信息
-     */
-    @PreAuthorize("@xz.hasPermission('sys:tenant:deleted')")
-    @PostMapping(value = "/deleted/{id}")
-    public ResponseResult<Object> deleteTenant(@PathVariable(value = "id") String id) {
-        tenantService.deleteTenant(id);
-        return ResponseResult.ok();
-    }
 
     /**
      * 查询租户详情

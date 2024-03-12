@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.web.controller;
+package io.xianzhi.system.web.controller.admin;
 
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
@@ -36,8 +36,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/dict")
-public class DictController {
+@RequestMapping(value = "/mng/dict")
+public class AdminDictController {
     /**
      * 字典服务
      */

@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-import {createRouter, createWebHistory} from 'vue-router'
+package io.xianzhi.system.web.controller.admin;
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/login',
-      name: 'login',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/login/index.vue')
-    }
-  ]
-})
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-export default router
+/**
+ * 管理员系统日志接口<br>
+ *
+ * @author Ethan Wang
+ * @since 1.0.0
+ */
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/mng/system/log")
+public class AdminSystemLogController {
+}

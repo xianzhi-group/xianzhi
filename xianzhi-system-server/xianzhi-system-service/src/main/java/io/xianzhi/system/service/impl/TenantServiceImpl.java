@@ -153,19 +153,6 @@ public class TenantServiceImpl implements TenantService {
         tenantMapper.updateById(tenantDO);
     }
 
-    /**
-     * 删除租户<br>
-     *
-     * @param id 租户ID
-     */
-    @Override
-    public void deleteTenant(String id) {
-        if (StringUtils.hasText(id)) {
-
-            tenantManager.deletedAllTenantCacheById(id);
-        }
-
-    }
 
     /**
      * 查询租户详情

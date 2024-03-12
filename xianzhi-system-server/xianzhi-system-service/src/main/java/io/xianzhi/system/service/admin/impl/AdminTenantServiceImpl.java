@@ -14,42 +14,34 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.service;
+package io.xianzhi.system.service.admin.impl;
 
-import io.xianzhi.system.model.dto.TenantDTO;
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.page.TenantPage;
 import io.xianzhi.system.model.vo.TenantVO;
+import io.xianzhi.system.service.admin.AdminTenantService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
- * 租户接口<br>
+ * 管理员租户接口实现<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public interface TenantService {
-
-
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class AdminTenantServiceImpl implements AdminTenantService {
     /**
-     * 创建租户<br>
+     * 查询所有租户列表
      *
-     * @param tenantDTO 租户信息入参
-     * @return 租户ID
+     * @param tenantPage 查询条件
+     * @return 租户列表
      */
-    String createTenant(TenantDTO tenantDTO);
-
-    /**
-     * 修改租户信息<br>
-     *
-     * @param tenantDTO 租户信息入参
-     */
-    void updateTenant(TenantDTO tenantDTO);
-
-
-    /**
-     * 查询租户详情
-     *
-     * @param id 租户ID
-     * @return 租户详情
-     */
-    TenantVO details(String id);
-
+    @Override
+    public ListResult<TenantVO> list(TenantPage tenantPage) {
+        return null;
+    }
 }
