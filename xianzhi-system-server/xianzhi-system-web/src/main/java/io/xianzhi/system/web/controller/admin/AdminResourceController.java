@@ -16,9 +16,16 @@
 
 package io.xianzhi.system.web.controller.admin;
 
+import io.xianzhi.business.annotations.UserTypeCheck;
+import io.xianzhi.business.enums.UserTypeEnum;
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.vo.ResourceVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 管理员资源接口<br>
@@ -30,4 +37,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/mng/resource")
 public class AdminResourceController {
+
+
+    /**
+     * 查询我的资源
+     *
+     * @return 我的资源
+     */
+    @GetMapping(value = "/me")
+    @UserTypeCheck(usertype = UserTypeEnum.SYSTEM)
+    public ResponseResult<List<ResourceVO>> me() {
+        return ResponseResult.ok();
+    }
 }
