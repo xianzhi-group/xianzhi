@@ -17,7 +17,9 @@
 package io.xianzhi.cms.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.xianzhi.cms.dao.dataobj.SiteDO;
+import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -32,13 +34,6 @@ import java.util.List;
 @Mapper
 public interface SiteMapper extends BaseMapper<SiteDO> {
 
-    /**
-     * 根据用户ID查询站点信息
-     *
-     * @param userId 用户ID
-     * @return 站点信息
-     */
-    List<SiteVO> querySiteByUserId(String userId);
 
     /**
      * 根据租户ID和用户ID查询站点信息
@@ -48,4 +43,30 @@ public interface SiteMapper extends BaseMapper<SiteDO> {
      * @return 站点信息
      */
     List<SiteVO> querySiteByTenantIdAndUserId(String tenantId, String userId);
+
+    /**
+     * 查询站点列表
+     *
+     * @param page     分页信息
+     * @param sitePage 站点查询条件
+     * @return 站点列表
+     */
+    IPage<SiteVO> querySiteByPage(IPage<SiteVO> page, SitePage sitePage);
+
+
+    /**
+     * 根据站点ID查询站点信息
+     *
+     * @param id 站点ID
+     * @return 站点信息
+     */
+    SiteDO querySiteById(String id);
+
+    /**
+     * 根据租户ID查询站点信息
+     *
+     * @param tenantId 租户ID
+     * @return 站点信息
+     */
+    List<SiteDO> querySiteByTenantId(String tenantId);
 }

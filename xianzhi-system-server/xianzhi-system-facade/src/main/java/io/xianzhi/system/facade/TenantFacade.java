@@ -14,28 +14,24 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.model.vo;
+package io.xianzhi.system.facade;
 
-import lombok.Data;
-
-import java.io.Serializable;
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.vo.TenantVO;
 
 /**
- * 用户信息出参<br>
+ * 租户接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-public class UserVO implements Serializable {
+public interface TenantFacade {
 
     /**
-     * 用户ID
+     * 获取站点信息
+     *
+     * @param tenantId 站点信息
+     * @return 站点信息
      */
-    private String id;
-
-    /**
-     * 昵称
-     */
-    private String nickName;
+    ResponseResult<TenantVO> getTenantInfo(String tenantId);
 }

@@ -31,4 +31,13 @@ import lombok.EqualsAndHashCode;
 @TableName(value = "xz_site_user")
 @EqualsAndHashCode(callSuper = true)
 public class SiteUserDO extends IdDO {
+
+    /**
+     * 站点ID
+     */
+    private String siteId;
+    /**
+     * 用户ID
+     */
+    private String userId;
 }

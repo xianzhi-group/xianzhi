@@ -14,28 +14,29 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.model.vo;
+package io.xianzhi.cms.model.page;
 
+import io.xianzhi.common.base.Page;
 import lombok.Data;
-
-import java.io.Serializable;
+import lombok.EqualsAndHashCode;
 
 /**
- * 用户信息出参<br>
+ * 站点查询条件<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Data
-public class UserVO implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class SitePage extends Page {
 
     /**
-     * 用户ID
+     * 租户ID
      */
-    private String id;
+    private String tenantId;
 
     /**
-     * 昵称
+     * 是否管理员请求
      */
-    private String nickName;
+    private Boolean admin;
 }

@@ -34,6 +34,10 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>io.xianzhi.system</groupId>
+            <artifactId>xianzhi-system-facade</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.xianzhi.cms</groupId>
             <artifactId>xianzhi-cms-facade</artifactId>
         </dependency>

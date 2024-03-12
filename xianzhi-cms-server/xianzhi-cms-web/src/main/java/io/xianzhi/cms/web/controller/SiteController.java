@@ -16,9 +16,14 @@
 
 package io.xianzhi.cms.web.controller;
 
+import io.xianzhi.cms.model.dto.SiteDTO;
+import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
+import io.xianzhi.cms.service.SiteService;
+import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,11 +41,49 @@ import java.util.List;
 public class SiteController {
 
     /**
+     * 站点服务
+     */
+    private final SiteService siteService;
+
+    /**
      * 获取当前用户所具有的站点信息
      *
      * @return 当前用户所具有的站点信息
      */
+    @PostMapping(value = "/me")
     public ResponseResult<List<SiteVO>> me() {
+        return ResponseResult.ok(siteService.me());
+    }
+
+    /**
+     * 查询站点列表
+     *
+     * @param sitePage 站点查询条件
+     * @return 站点列表
+     */
+    public ResponseResult<ListResult<SiteVO>> list(SitePage sitePage) {
+        sitePage.setAdmin(false);
+        return ResponseResult.ok(siteService.list(sitePage));
+    }
+
+
+    public ResponseResult<SiteVO> details(String id) {
+        return ResponseResult.ok(siteService.details(id));
+    }
+
+
+    public ResponseResult<Object> deleted(String id) {
+        siteService.deleted(id);
+        return ResponseResult.ok();
+    }
+
+
+    public ResponseResult<String> create(SiteDTO siteDTO) {
+        return ResponseResult.ok();
+    }
+
+
+    public ResponseResult<Object> update(SiteDTO siteDTO) {
         return ResponseResult.ok();
     }
 }

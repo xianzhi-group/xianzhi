@@ -28,4 +28,9 @@ import java.io.Serializable;
  */
 @Data
 public class TenantVO implements Serializable {
+
+    /**
+     * 租户管理员
+     */
+    private UserVO admin;
 }

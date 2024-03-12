@@ -14,28 +14,27 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.model.vo;
+package io.xianzhi.business.model;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 用户信息出参<br>
+ * 禁用入参<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Data
-public class UserVO implements Serializable {
+public class DisableDTO implements Serializable {
 
     /**
-     * 用户ID
+     * 禁用ID
      */
     private String id;
-
     /**
-     * 昵称
+     * 禁用原因
      */
-    private String nickName;
+    private String reason;
 }

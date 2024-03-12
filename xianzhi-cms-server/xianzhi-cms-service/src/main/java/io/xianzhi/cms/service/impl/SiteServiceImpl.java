@@ -16,16 +16,11 @@
 
 package io.xianzhi.cms.service.impl;
 
-import io.xianzhi.business.context.XianZhiUserContext;
-import io.xianzhi.business.enums.UserTypeEnum;
-import io.xianzhi.business.utils.WebUtil;
 import io.xianzhi.cms.dao.mapper.SiteMapper;
 import io.xianzhi.cms.dao.mapper.SiteUserMapper;
 import io.xianzhi.cms.manager.SiteManager;
 import io.xianzhi.cms.model.vo.SiteVO;
 import io.xianzhi.cms.service.SiteService;
-import io.xianzhi.common.code.CommonCode;
-import io.xianzhi.common.exception.BizException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -56,6 +51,7 @@ public class SiteServiceImpl implements SiteService {
      */
     private final SiteManager siteManager;
 
+
     /**
      * 获取当前用户所属具有的站点信息
      *
@@ -63,18 +59,6 @@ public class SiteServiceImpl implements SiteService {
      */
     @Override
     public List<SiteVO> me() {
-        String userId = XianZhiUserContext.getCurrentUserId();
-        String userType = XianZhiUserContext.getCurrentUserType();
-        if (userType.equals(UserTypeEnum.SYSTEM.getCode())) {
-            return siteMapper.querySiteByUserId(userId);
-        } else if (userType.equals(UserTypeEnum.ENTERPRISE.getCode())) {
-            String tenantId = WebUtil.getCurrentTenantId();
-            // 检查用户是否属于该租户
-            siteManager.checkedTenantUser(tenantId, userId);
-            return siteMapper.querySiteByTenantIdAndUserId(tenantId, userId);
-        } else {
-            log.error("用户类型错误，userId:{}", userId);
-            throw new BizException(CommonCode.PARAMETER_CHECK_FAILED);
-        }
+        return null;
     }
 }

@@ -36,4 +36,19 @@ public class SiteDO extends BaseDO {
      * 租户ID
      */
     private String tenantId;
+
+    /**
+     * 站点名称
+     */
+    private String siteName;
+
+    /**
+     * 站点管理员
+     */
+    private String siteAdmin;
+
+    /**
+     * 默认站点标识
+     */
+    private Boolean defaultFlag;
 }

@@ -14,28 +14,21 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.model.vo;
+package io.xianzhi.cms.web.controller.mng;
 
-import lombok.Data;
-
-import java.io.Serializable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * 用户信息出参<br>
+ * 模型管理<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@Data
-public class UserVO implements Serializable {
+@RestController
+@RestControllerAdvice
+@RequestMapping(value = "/mng/model")
+public class ModelController {
 
-    /**
-     * 用户ID
-     */
-    private String id;
-
-    /**
-     * 昵称
-     */
-    private String nickName;
 }

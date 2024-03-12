@@ -14,26 +14,35 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.service;
+package io.xianzhi.system.facade.impl;
 
-import io.xianzhi.cms.model.vo.SiteVO;
-
-import java.util.List;
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.facade.TenantFacade;
+import io.xianzhi.system.model.vo.TenantVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.stereotype.Component;
 
 /**
- * 站点接口<br>
+ * 租户接口实现<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public interface SiteService {
-
+@Slf4j
+@Component
+@DubboService
+@RequiredArgsConstructor
+public class TenantFacadeImpl implements TenantFacade {
     /**
-     * 获取当前用户所属具有的站点信息
+     * 获取站点信息
      *
+     * @param tenantId 站点信息
      * @return 站点信息
      */
-    List<SiteVO> me();
-
-
+    @Override
+    public ResponseResult<TenantVO> getTenantInfo(String tenantId) {
+        return null;
+    }
 }

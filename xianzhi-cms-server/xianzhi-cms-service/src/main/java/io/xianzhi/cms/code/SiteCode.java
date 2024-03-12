@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.code;
+package io.xianzhi.cms.code;
 
 import io.xianzhi.common.result.Result;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 系统服务错误码<br>
+ * 站点Code<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @Getter
 @AllArgsConstructor
-public enum SystemErrorCode implements Result {
+public enum SiteCode implements Result {
     /**
-     * 租户不存在
+     * 默认站点已经存在
      */
-    TENANT_NOT_EXISTS("10001", false, "tenant.not.exist"),
-    /**
-     * 租户名称已存在
-     */
-    TENANT_NAME_EXISTS("10002", false, "tenant.name.exists"),
-    ;
+    DEFAULT_SITE_EXISTS("CMS-SITE-001", false, "default.site.exists");
+
+
     /**
      * custom response status code
      */
