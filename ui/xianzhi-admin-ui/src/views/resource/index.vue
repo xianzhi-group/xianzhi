@@ -23,7 +23,7 @@ export default defineComponent({
 </script>
 
 <template>
-
+  <div></div>
 </template>
 
 <style scoped>
