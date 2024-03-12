@@ -16,7 +16,8 @@
 
 package io.xianzhi.system.web.controller;
 
-import io.xianzhi.business.annotations.Tenant;
+import io.xianzhi.business.annotations.UserTypeCheck;
+import io.xianzhi.business.enums.UserTypeEnum;
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.dto.TenantDTO;
@@ -51,8 +52,8 @@ public class TenantController {
      *
      * @return 当前用户所具有的租户信息
      */
-    @Tenant
     @GetMapping(value = "/me")
+    @UserTypeCheck(usertype = UserTypeEnum.ENTERPRISE)
     public ResponseResult<List<TenantVO>> me() {
         return ResponseResult.ok(tenantService.me());
     }

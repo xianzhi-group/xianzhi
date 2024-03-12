@@ -16,43 +16,18 @@
 
 package io.xianzhi.system.web.controller.admin;
 
-import io.xianzhi.common.result.ListResult;
-import io.xianzhi.common.result.ResponseResult;
-import io.xianzhi.system.model.page.UserPage;
-import io.xianzhi.system.model.vo.UserVO;
-import io.xianzhi.system.service.admin.AdminUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 用户接口<br>
+ * 管理员OSS管理<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/mng/user")
-public class AdminUserController {
-
-    /**
-     * 管理员用户接口
-     */
-    private final AdminUserService adminUserService;
-
-
-    /**
-     * 查询所有用户列表
-     *
-     * @param userPage 用户查询条件
-     * @return 用户列表
-     */
-    @PostMapping(value = "/list")
-    public ResponseResult<ListResult<UserVO>> list(@RequestBody @Validated UserPage userPage) {
-        return ResponseResult.ok();
-    }
+@RequestMapping(value = "/mng/oss")
+public class AdminOssController {
 }

@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-package io.xianzhi.business.annotations;
+package io.xianzhi.system.web.controller.admin;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 租户用户类型检查注解<br>
+ * 管理员角色接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public @interface Tenant {
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/mng/role")
+public class AdminRoleController {
+
+
 }
