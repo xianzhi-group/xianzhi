@@ -16,7 +16,9 @@
 
 package io.xianzhi.system.service;
 
-import io.xianzhi.system.model.dto.UserDTO;
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.page.UserPage;
+import io.xianzhi.system.model.vo.UserVO;
 
 /**
  * 用户信息接口<br>
@@ -25,18 +27,29 @@ import io.xianzhi.system.model.dto.UserDTO;
  * @since 1.0.0
  */
 public interface UserService {
-    /**
-     * 新增用户
-     *
-     * @param userDTO 用户信息入参
-     * @return 用户ID
-     */
-    String createUser(UserDTO userDTO);
 
     /**
-     * 更新用户
+     * 查询租户下的用户列表
      *
-     * @param userDTO 用户信息入参
+     * @param userPage 用户查询条件
+     * @return 用户列表
      */
-    void updateUser(UserDTO userDTO);
+    ListResult<UserVO> list(UserPage userPage);
+
+    /**
+     * 查询用户详情
+     *
+     * @param id 用户ID
+     * @return 用户详情
+     */
+    UserVO details(String id);
+
+    /**
+     * 将用户从租户中踢出
+     *
+     * @param id 用户ID
+     */
+    void kickOut(String id);
+
+
 }

@@ -16,6 +16,10 @@
 
 package io.xianzhi.system.service.admin;
 
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.page.UserPage;
+import io.xianzhi.system.model.vo.UserVO;
+
 /**
  * 管理员用户接口<br>
  *
@@ -23,4 +27,12 @@ package io.xianzhi.system.service.admin;
  * @since 1.0.0
  */
 public interface AdminUserService {
+
+    /**
+     * 用户列表
+     *
+     * @param userPage 用户查询条件
+     * @return 用户列表
+     */
+    ListResult<UserVO> list(UserPage userPage);
 }

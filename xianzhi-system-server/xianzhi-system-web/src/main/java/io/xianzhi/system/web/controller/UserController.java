@@ -18,12 +18,10 @@ package io.xianzhi.system.web.controller;
 
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
-import io.xianzhi.system.model.dto.UserDTO;
 import io.xianzhi.system.model.page.UserPage;
 import io.xianzhi.system.model.vo.UserVO;
 import io.xianzhi.system.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -42,27 +40,6 @@ public class UserController {
      */
     private final UserService userService;
 
-    /**
-     * 新增用户
-     *
-     * @param userDTO 用户信息入参
-     * @return 响应信息
-     */
-    @PostMapping(value = "/createUser")
-    public ResponseResult<String> createUser(@RequestBody @Validated UserDTO userDTO) {
-        return ResponseResult.ok(userService.createUser(userDTO));
-    }
-
-    /**
-     * 更新用户
-     *
-     * @param userDTO 用户信息入参
-     * @return 响应信息
-     */
-    @PostMapping(value = "/updateUser")
-    public ResponseResult<Object> updateUser(@RequestBody @Validated UserDTO userDTO) {
-        return ResponseResult.ok();
-    }
 
     /**
      * 查询用户详情

@@ -18,6 +18,7 @@ package io.xianzhi.system.web.controller.admin;
 
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.dto.UserDTO;
 import io.xianzhi.system.model.page.UserPage;
 import io.xianzhi.system.model.vo.UserVO;
 import io.xianzhi.system.service.admin.AdminUserService;
@@ -55,4 +56,27 @@ public class AdminUserController {
     public ResponseResult<ListResult<UserVO>> list(@RequestBody @Validated UserPage userPage) {
         return ResponseResult.ok();
     }
+
+    /**
+     * 新增用户
+     *
+     * @param userDTO 用户信息入参
+     * @return 用户ID
+     */
+    @PostMapping(value = "/create")
+    public ResponseResult<String> create(@RequestBody @Validated UserDTO userDTO) {
+        return ResponseResult.ok();
+    }
+
+    /**
+     * 修噶用户
+     *
+     * @param userDTO 用户信息入参
+     * @return 响应信息
+     */
+    @PostMapping(value = "/update")
+    public ResponseResult<Object> update(@RequestBody @Validated UserDTO userDTO) {
+        return ResponseResult.ok();
+    }
+
 }

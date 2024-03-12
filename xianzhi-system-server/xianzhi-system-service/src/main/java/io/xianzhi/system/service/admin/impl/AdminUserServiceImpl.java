@@ -16,6 +16,10 @@
 
 package io.xianzhi.system.service.admin.impl;
 
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.dao.mappers.UserMapper;
+import io.xianzhi.system.model.page.UserPage;
+import io.xianzhi.system.model.vo.UserVO;
 import io.xianzhi.system.service.admin.AdminUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,4 +35,20 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AdminUserServiceImpl implements AdminUserService {
+
+    /**
+     * 用户信息持久层
+     */
+    private final UserMapper userMapper;
+
+    /**
+     * 用户列表
+     *
+     * @param userPage 用户查询条件
+     * @return 用户列表
+     */
+    @Override
+    public ListResult<UserVO> list(UserPage userPage) {
+        return null;
+    }
 }

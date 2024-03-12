@@ -16,8 +16,9 @@
 
 package io.xianzhi.system.service.impl;
 
-import io.xianzhi.business.context.XianZhiUserContext;
-import io.xianzhi.system.model.dto.UserDTO;
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.page.UserPage;
+import io.xianzhi.system.model.vo.UserVO;
 import io.xianzhi.system.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,26 +34,36 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     /**
-     * 新增用户
+     * 查询租户下的用户列表
      *
-     * @param userDTO 用户信息入参
-     * @return 用户ID
+     * @param userPage 用户查询条件
+     * @return 用户列表
      */
     @Override
-    public String createUser(UserDTO userDTO) {
-        String currentUserType = XianZhiUserContext.getCurrentUserType();
-
+    public ListResult<UserVO> list(UserPage userPage) {
         return null;
     }
 
     /**
-     * 更新用户
+     * 查询用户详情
      *
-     * @param userDTO 用户信息入参
+     * @param id 用户ID
+     * @return 用户详情
      */
     @Override
-    public void updateUser(UserDTO userDTO) {
+    public UserVO details(String id) {
+        return null;
+    }
+
+    /**
+     * 将用户从租户中踢出
+     *
+     * @param id 用户ID
+     */
+    @Override
+    public void kickOut(String id) {
 
     }
 }
