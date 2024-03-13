@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.service.impl;
+package io.xianzhi.cms.service.admin.impl;
 
 import com.alibaba.fastjson2.JSON;
 import io.xianzhi.business.model.DisableDTO;
@@ -25,7 +25,7 @@ import io.xianzhi.cms.dao.mapper.SiteMapper;
 import io.xianzhi.cms.dao.mapper.SiteUserMapper;
 import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
-import io.xianzhi.cms.service.AdminSiteService;
+import io.xianzhi.cms.service.admin.AdminSiteService;
 import io.xianzhi.common.code.CommonCode;
 import io.xianzhi.common.exception.BizException;
 import io.xianzhi.common.result.ListResult;

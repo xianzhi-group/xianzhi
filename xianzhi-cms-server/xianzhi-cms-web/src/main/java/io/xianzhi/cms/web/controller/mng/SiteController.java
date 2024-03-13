@@ -19,7 +19,7 @@ package io.xianzhi.cms.web.controller.mng;
 import io.xianzhi.business.model.DisableDTO;
 import io.xianzhi.cms.model.page.SitePage;
 import io.xianzhi.cms.model.vo.SiteVO;
-import io.xianzhi.cms.service.AdminSiteService;
+import io.xianzhi.cms.service.admin.AdminSiteService;
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.common.result.ResponseResult;
 import lombok.RequiredArgsConstructor;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.service;
+package io.xianzhi.cms.service.admin;
 
 import io.xianzhi.business.model.DisableDTO;
 import io.xianzhi.cms.model.page.SitePage;

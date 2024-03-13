@@ -54,7 +54,6 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public ResponseResult<AuthUserVO> loadAuthUserByUsernameAndUserType(String username, String userType) {
         if (StringUtils.hasText(username) && StringUtils.hasText(userType)) {
-
             AuthUserVO authUserVO = userMapper.loadAuthUserByUsernameAndUserType(username, userType);
             if (null == authUserVO) {
                 log.error("根据用户名和用户类型加载用户信息失败，用户:{}不存在,用户类型:{}", username, userType);
