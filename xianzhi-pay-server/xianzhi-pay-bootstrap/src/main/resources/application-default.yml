@@ -1,16 +1,16 @@
 spring:
   cloud:
     nacos:
-      server-addr: 192.168.50.11:8848
+      server-addr: 192.168.50.7:8848
       config:
         server-addr: ${spring.cloud.nacos.server-addr}
       username: nacos
       password: nacos
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource # 使用druid连接池
-    url: jdbc:mysql://192.168.50.11:3306/xianzhi?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.50.7:3306/xianzhi_pay?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: xianzhi_2023
+    password: xianzhi_2024
     #username: 账号                 如果使用springboot2整合druid连接池！使用此信息配置账号、密码！！！！！！！
     #password:                     但是springboot3不支持该配置方式！！！！！！！！！！！！！！！！
     # Druid的其他属性配置
