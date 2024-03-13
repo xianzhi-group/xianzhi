@@ -1,3 +1,2 @@
 io.xianzhi.business.security.XianZhiAuthenticationEntryPoint
 io.xianzhi.business.security.XianZhiAccessDeniedHandler
-io.xianzhi.business.aspects.UserTypeCheckAspect

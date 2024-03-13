@@ -29,8 +29,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 public class WebUtil {
 
-    public static final String TENANT_ID = "X-Tenant-Id";
-
     /**
      * 获取Request对象
      *
@@ -38,15 +36,5 @@ public class WebUtil {
      */
     public static HttpServletRequest getRequest() {
         return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-    }
-
-
-    /**
-     * 获取当前租户ID
-     *
-     * @return 租户ID
-     */
-    public static String getCurrentTenantId() {
-        return WebUtil.getRequest().getHeader(TENANT_ID);
     }
 }

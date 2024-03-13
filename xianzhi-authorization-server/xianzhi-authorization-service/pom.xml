@@ -34,10 +34,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.xianzhi.system</groupId>
-            <artifactId>xianzhi-system-facade</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.xianzhi.authorization</groupId>
             <artifactId>xianzhi-authorization-dao</artifactId>
         </dependency>

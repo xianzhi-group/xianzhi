@@ -29,14 +29,6 @@ import io.xianzhi.common.exception.BizException;
  */
 public class XianZhiUserContext extends UserContext {
 
-    /**
-     * 获取当前用户类型
-     *
-     * @return 当前用户类型
-     */
-    public static String getCurrentUserType() {
-        return getXianZhiUser().getUserType();
-    }
 
     /**
      * 设置一个默认的匿名者用户信息上下文，为了解决无法获取用户信息

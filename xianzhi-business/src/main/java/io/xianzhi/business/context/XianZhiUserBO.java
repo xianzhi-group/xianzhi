@@ -16,7 +16,6 @@
 
 package io.xianzhi.business.context;
 
-import io.xianzhi.business.enums.UserTypeEnum;
 import io.xianzhi.common.context.UserBO;
 import lombok.Data;
 
@@ -35,9 +34,5 @@ public class XianZhiUserBO implements UserBO {
 
     private String username;
 
-    /**
-     * 租户类型 {@link UserTypeEnum#getCode()}
-     */
-    private String userType;
 
 }
