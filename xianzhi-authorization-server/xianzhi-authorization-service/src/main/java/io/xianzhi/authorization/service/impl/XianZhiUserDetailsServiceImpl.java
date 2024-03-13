@@ -96,7 +96,7 @@ public class XianZhiUserDetailsServiceImpl implements XianZhiUserDetailsService 
             log.error("用户名不能为空");
             throw new UsernameNotFoundException(CommonCode.PARAMETER_CHECK_FAILED.getMessage());
         }
-        ResponseResult<AuthUserVO> result = userFacade.loadAuthUserByUsername(username);
+        ResponseResult<AuthUserVO> result = userFacade.loadAuthUserByUsernameAndUserType(username, "");
         if (!result.isSuccess() || null == result.getData()) {
             log.error("请求查询用户认证信息失败:{}", JSON.toJSONString(result));
             throw new OAuth2Exception(result);
