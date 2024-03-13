@@ -22,6 +22,8 @@ import io.xianzhi.system.model.vo.AuthUserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 用户信息持久层<br>
  *
@@ -38,4 +40,22 @@ public interface UserMapper extends BaseMapper<UserDO> {
      * @return 用户信息
      */
     AuthUserVO loadAuthUserByUsername(@Param("username") String username);
+
+
+    /**
+     * 根据用户类型查询用户列表
+     *
+     * @param userType 用户类型
+     * @return 用户列表
+     */
+    List<UserDO> getUserByUserType(@Param("userType") String userType);
+
+
+    /**
+     * 搜索系统用户列表
+     *
+     * @param key 关键字，昵称，真实姓名，工号
+     * @return 用户信息
+     */
+    List<UserDO> adminSearch(String key);
 }

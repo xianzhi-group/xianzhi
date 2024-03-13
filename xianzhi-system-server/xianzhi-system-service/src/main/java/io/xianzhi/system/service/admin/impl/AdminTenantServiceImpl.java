@@ -16,10 +16,13 @@
 
 package io.xianzhi.system.service.admin.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.xianzhi.business.context.XianZhiUserContext;
 import io.xianzhi.common.result.ListResult;
 import io.xianzhi.system.dao.dataobj.TenantDO;
 import io.xianzhi.system.dao.mappers.TenantMapper;
+import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.enums.TenantStatusEnum;
 import io.xianzhi.system.model.enums.TenantTypeEnum;
 import io.xianzhi.system.model.page.TenantPage;
@@ -54,7 +57,31 @@ public class AdminTenantServiceImpl implements AdminTenantService, InitializingB
      */
     @Override
     public ListResult<TenantVO> list(TenantPage tenantPage) {
+        IPage<TenantVO> vos = new Page<>(tenantPage.getPageNo(), tenantPage.getPageSize());
+        return new ListResult<>(vos.getRecords(), vos.getTotal());
+    }
+
+    /**
+     * 新增一个租户
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 租户ID
+     */
+    @Override
+    public String createTenant(TenantDTO tenantDTO) {
+        TenantTypeEnum tenantType = tenantDTO.getTenantType();
+
         return null;
+    }
+
+    /**
+     * 修改一个租户
+     *
+     * @param tenantDTO 租户恓入参
+     */
+    @Override
+    public void updateTenant(TenantDTO tenantDTO) {
+
     }
 
     /**

@@ -38,4 +38,6 @@ public class UserVO implements Serializable {
      * 昵称
      */
     private String nickName;
+
+
 }

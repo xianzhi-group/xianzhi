@@ -16,11 +16,32 @@
 
 package io.xianzhi.system.model.page;
 
+import io.xianzhi.common.base.Page;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * 租户查询条件<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public class TenantPage {
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class TenantPage extends Page {
+
+    /**
+     * 租户类型
+     */
+    private String tenantType;
+
+    /**
+     * 租户名称
+     */
+    private String tenantName;
+
+    /**
+     * 租户状态
+     */
+    private String tenantStatus;
 }

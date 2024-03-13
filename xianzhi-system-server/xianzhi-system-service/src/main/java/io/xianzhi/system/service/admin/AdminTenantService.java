@@ -17,6 +17,7 @@
 package io.xianzhi.system.service.admin;
 
 import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.dto.TenantDTO;
 import io.xianzhi.system.model.page.TenantPage;
 import io.xianzhi.system.model.vo.TenantVO;
 
@@ -35,4 +36,21 @@ public interface AdminTenantService {
      * @return 租户列表
      */
     ListResult<TenantVO> list(TenantPage tenantPage);
+
+
+    /**
+     * 新增一个租户
+     *
+     * @param tenantDTO 租户信息入参
+     * @return 租户ID
+     */
+    String createTenant(TenantDTO tenantDTO);
+
+
+    /**
+     * 修改一个租户
+     *
+     * @param tenantDTO 租户恓入参
+     */
+    void updateTenant(TenantDTO tenantDTO);
 }

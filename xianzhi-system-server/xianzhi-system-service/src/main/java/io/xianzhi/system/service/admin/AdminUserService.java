@@ -17,8 +17,11 @@
 package io.xianzhi.system.service.admin;
 
 import io.xianzhi.common.result.ListResult;
+import io.xianzhi.system.model.dto.UserDTO;
 import io.xianzhi.system.model.page.UserPage;
 import io.xianzhi.system.model.vo.UserVO;
+
+import java.util.List;
 
 /**
  * 管理员用户接口<br>
@@ -35,4 +38,24 @@ public interface AdminUserService {
      * @return 用户列表
      */
     ListResult<UserVO> list(UserPage userPage);
+
+
+    /**
+     * 新增一个用户
+     *
+     * @param userDTO 用户信息入参
+     * @return 响应信息
+     */
+    String crateUser(UserDTO userDTO);
+
+
+    /**
+     * 搜索系统用户列表
+     *
+     * @param key 关键字，昵称，真实姓名，工号
+     * @return 用户信息
+     */
+    List<UserVO> search(String key);
+
+
 }

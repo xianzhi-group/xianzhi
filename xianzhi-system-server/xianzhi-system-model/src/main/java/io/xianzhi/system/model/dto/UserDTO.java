@@ -28,4 +28,9 @@ import java.io.Serializable;
  */
 @Data
 public class UserDTO implements Serializable {
+
+    /**
+     * 用户类型 io.xianzhi.business.enums.UserTypeEnum#getCode
+     */
+    private String userType;
 }

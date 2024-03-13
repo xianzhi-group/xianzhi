@@ -16,6 +16,7 @@
 
 package io.xianzhi.system.model.dto;
 
+import io.xianzhi.system.model.enums.TenantTypeEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -38,9 +39,9 @@ public class TenantDTO implements Serializable {
      */
     private String tenantName;
     /**
-     * 租户类型 {@link io.xianzhi.system.model.enums.TenantTypeEnum#getCode
+     * 租户类型
      */
-    private String tenantType;
+    private TenantTypeEnum tenantType;
     /**
      * 租户状态 {@link io.xianzhi.system.model.enums.TenantStatusEnum#getCode}
      */
