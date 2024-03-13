@@ -16,7 +16,10 @@
 
 package io.xianzhi.system.web.controller.admin;
 
+import io.xianzhi.common.result.ResponseResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,4 +33,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/mng/oss")
 public class AdminOssController {
+
+    /**
+     * 查询OSS配置
+     *
+     * @param id 配置ID
+     * @return 响应信息
+     */
+    @PostMapping(value = "/deleted/{id}")
+    public ResponseResult<Object> deleted(@PathVariable(value = "id") String id) {
+        return ResponseResult.ok();
+    }
 }

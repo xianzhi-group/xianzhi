@@ -21,6 +21,7 @@ import io.xianzhi.common.result.ResponseResult;
 import io.xianzhi.system.model.page.FilePage;
 import io.xianzhi.system.model.vo.FileVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +36,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/mng/file")
 public class AdminFileController {
 
-
+    /**
+     * 文件列表
+     *
+     * @param filePage 文件分页
+     * @return 文件列表
+     */
+    @PostMapping(value = "/list")
     public ResponseResult<ListResult<FileVO>> list(FilePage filePage) {
         return ResponseResult.ok();
     }
+
+    /**
+     * 删除文件
+     *
+     * @param id 文件ID
+     * @return 响应信息
+     */
+    @PostMapping(value = "/deleted")
+    public ResponseResult<Object> deleted(String id) {
+        return ResponseResult.ok();
+    }
+
+
 }

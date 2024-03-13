@@ -23,10 +23,8 @@ import io.xianzhi.system.model.page.DictPage;
 import io.xianzhi.system.model.vo.DictVO;
 import io.xianzhi.system.service.DictService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 字典接口<br>
@@ -50,7 +48,7 @@ public class AdminDictController {
      * @return 字典ID
      */
     @PostMapping(value = "/createDict")
-    public ResponseResult<String> createDict(DictDTO dto) {
+    public ResponseResult<String> createDict(@RequestBody @Validated DictDTO dto) {
         return ResponseResult.ok();
     }
 
@@ -61,7 +59,7 @@ public class AdminDictController {
      * @return 响应信息
      */
     @PostMapping(value = "/updateDict")
-    public ResponseResult<Object> updateDict(DictDTO dto) {
+    public ResponseResult<Object> updateDict(@RequestBody @Validated DictDTO dto) {
         return ResponseResult.ok();
     }
 
@@ -83,7 +81,7 @@ public class AdminDictController {
      * @return 字典列表
      */
     @PostMapping(value = "/list")
-    public ResponseResult<ListResult<DictVO>> list(DictPage dictPage) {
+    public ResponseResult<ListResult<DictVO>> list(@RequestBody DictPage dictPage) {
         return ResponseResult.ok();
     }
 }
