@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.web.controller;
+package io.xianzhi.system.model.vo;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
- * 栏目接口<br>
+ * 文件信息出参<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/column")
-public class ColumnController {
+@Data
+public class FileVO implements Serializable {
+
+    /**
+     * 租户信息
+     */
+    private TenantVO tenantVO;
 }

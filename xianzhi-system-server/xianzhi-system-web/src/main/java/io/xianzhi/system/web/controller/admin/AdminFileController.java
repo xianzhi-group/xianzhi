@@ -16,6 +16,10 @@
 
 package io.xianzhi.system.web.controller.admin;
 
+import io.xianzhi.common.result.ListResult;
+import io.xianzhi.common.result.ResponseResult;
+import io.xianzhi.system.model.page.FilePage;
+import io.xianzhi.system.model.vo.FileVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,4 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(value = "/mng/file")
 public class AdminFileController {
+
+
+    public ResponseResult<ListResult<FileVO>> list(FilePage filePage) {
+        return ResponseResult.ok();
+    }
 }

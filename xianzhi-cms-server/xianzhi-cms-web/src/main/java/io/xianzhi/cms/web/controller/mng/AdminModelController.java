@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.web.controller;
+package io.xianzhi.cms.web.controller.mng;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * 栏目接口<br>
+ * 模型管理<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
 @RestController
-@RequiredArgsConstructor
-@RequestMapping(value = "/column")
-public class ColumnController {
+@RestControllerAdvice
+@RequestMapping(value = "/mng/model")
+public class AdminModelController {
+
 }

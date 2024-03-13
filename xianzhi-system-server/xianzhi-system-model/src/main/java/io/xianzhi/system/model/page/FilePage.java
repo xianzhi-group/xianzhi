@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package io.xianzhi.cms.web.controller.mng;
+package io.xianzhi.system.model.page;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import io.xianzhi.common.base.Page;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 模型管理<br>
+ * 文件查询条件<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-@RestController
-@RestControllerAdvice
-@RequestMapping(value = "/mng/model")
-public class ModelController {
-
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class FilePage extends Page {
 }
