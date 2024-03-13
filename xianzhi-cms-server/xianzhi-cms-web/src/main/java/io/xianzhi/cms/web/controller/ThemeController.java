@@ -14,26 +14,20 @@
  * limitations under the License.
  */
 
-package io.xianzhi.system.facade;
+package io.xianzhi.cms.web.controller;
 
-import io.xianzhi.common.result.ResponseResult;
-import io.xianzhi.system.model.vo.AuthUserVO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * 用户信息接口<br>
+ * 主题接口<br>
  *
  * @author Ethan Wang
  * @since 1.0.0
  */
-public interface UserFacade {
-
-
-    /**
-     * 根据用户名和用户类型加载用户信息
-     *
-     * @param username 用户名
-     * @param userType 用户类型
-     * @return 用户信息
-     */
-    ResponseResult<AuthUserVO> loadAuthUserByUsernameAndUserType(String username, String userType);
+@RestController
+@RestControllerAdvice
+@RequestMapping(value = "/theme")
+public class ThemeController {
 }

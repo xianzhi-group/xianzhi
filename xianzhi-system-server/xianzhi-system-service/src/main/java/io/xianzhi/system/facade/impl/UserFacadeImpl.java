@@ -43,18 +43,21 @@ public class UserFacadeImpl implements UserFacade {
      */
     private final UserMapper userMapper;
 
+
     /**
-     * 根据用户名加载用户信息
+     * 根据用户名和用户类型加载用户信息
      *
      * @param username 用户名
+     * @param userType 用户类型
      * @return 用户信息
      */
     @Override
-    public ResponseResult<AuthUserVO> loadAuthUserByUsername(String username) {
-        if (StringUtils.hasText(username)) {
-            AuthUserVO authUserVO = userMapper.loadAuthUserByUsername(username);
+    public ResponseResult<AuthUserVO> loadAuthUserByUsernameAndUserType(String username, String userType) {
+        if (StringUtils.hasText(username) && StringUtils.hasText(userType)) {
+
+            AuthUserVO authUserVO = userMapper.loadAuthUserByUsernameAndUserType(username, userType);
             if (null == authUserVO) {
-                log.error("根据用户名加载用户信息失败，用户:{}不存在", username);
+                log.error("根据用户名和用户类型加载用户信息失败，用户:{}不存在,用户类型:{}", username, userType);
                 return ResponseResult.ok();
             }
 

@@ -17,6 +17,12 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="io.xianzhi.system.dao.mappers.UserMapper">
-    <select id="loadAuthUserByUsername" resultType="io.xianzhi.system.model.vo.AuthUserVO">
+    <select id="loadAuthUserByUsernameAndUserType" resultType="io.xianzhi.system.model.vo.AuthUserVO">
+    </select>
+
+    <select id="getUserByUserType" resultType="io.xianzhi.system.dao.dataobj.UserDO">
+    </select>
+
+    <select id="adminSearch" resultType="io.xianzhi.system.dao.dataobj.UserDO">
     </select>
 </mapper>

@@ -33,14 +33,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
 
-    /**
-     * 根据用户名加载用户信息
-     *
-     * @param username 用户名
-     * @return 用户信息
-     */
-    AuthUserVO loadAuthUserByUsername(@Param("username") String username);
-
 
     /**
      * 根据用户类型查询用户列表
@@ -58,4 +50,13 @@ public interface UserMapper extends BaseMapper<UserDO> {
      * @return 用户信息
      */
     List<UserDO> adminSearch(String key);
+
+    /**
+     * 根据用户名和用户类型加载用户信息
+     *
+     * @param username 用户名
+     * @param userType 用户类型
+     * @return 用户信息
+     */
+    AuthUserVO loadAuthUserByUsernameAndUserType(@Param("username") String username, @Param("userType") String userType);
 }
